@@ -4,6 +4,7 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
+  useRouterState,
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
@@ -80,16 +81,36 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Gym.AI — Discovery Copiloto para Pré-Vendas" },
-      { name: "description", content: "Motor conversacional multi-agente que conduz descobertas técnico-comerciais em 10 categorias e entrega Entendimento Executivo + artefatos prontos." },
+      {
+        name: "description",
+        content:
+          "Motor conversacional multi-agente que conduz descobertas técnico-comerciais em 10 categorias e entrega Entendimento Executivo + artefatos prontos.",
+      },
       { name: "author", content: "Gym.AI" },
       { property: "og:title", content: "Gym.AI — Discovery Copiloto para Pré-Vendas" },
-      { property: "og:description", content: "Motor conversacional multi-agente que conduz descobertas técnico-comerciais em 10 categorias e entrega Entendimento Executivo + artefatos prontos." },
+      {
+        property: "og:description",
+        content:
+          "Motor conversacional multi-agente que conduz descobertas técnico-comerciais em 10 categorias e entrega Entendimento Executivo + artefatos prontos.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Gym.AI — Discovery Copiloto para Pré-Vendas" },
-      { name: "twitter:description", content: "Motor conversacional multi-agente que conduz descobertas técnico-comerciais em 10 categorias e entrega Entendimento Executivo + artefatos prontos." },
-      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/dbae7824-d6a7-42ad-8bb9-4a4cbd8ab6b3" },
-      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/dbae7824-d6a7-42ad-8bb9-4a4cbd8ab6b3" },
+      {
+        name: "twitter:description",
+        content:
+          "Motor conversacional multi-agente que conduz descobertas técnico-comerciais em 10 categorias e entrega Entendimento Executivo + artefatos prontos.",
+      },
+      {
+        property: "og:image",
+        content:
+          "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/dbae7824-d6a7-42ad-8bb9-4a4cbd8ab6b3",
+      },
+      {
+        name: "twitter:image",
+        content:
+          "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/dbae7824-d6a7-42ad-8bb9-4a4cbd8ab6b3",
+      },
     ],
     links: [
       {
@@ -99,7 +120,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap",
+      },
     ],
   }),
   shellComponent: RootShell,
@@ -125,15 +149,18 @@ function RootShell({ children }: { children: ReactNode }) {
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const router = useRouter();
+  const pathname = useRouterState({ select: (state) => state.location.pathname });
 
   useEffect(() => {
+    if (pathname === "/demo") return;
+
     const { data: sub } = supabase.auth.onAuthStateChange((event) => {
       if (event !== "SIGNED_IN" && event !== "SIGNED_OUT" && event !== "USER_UPDATED") return;
       router.invalidate();
       if (event !== "SIGNED_OUT") queryClient.invalidateQueries();
     });
     return () => sub.subscription.unsubscribe();
-  }, [router, queryClient]);
+  }, [pathname, router, queryClient]);
 
   return (
     <QueryClientProvider client={queryClient}>

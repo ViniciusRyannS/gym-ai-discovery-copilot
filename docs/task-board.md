@@ -2,9 +2,7 @@
 
 ## Em andamento
 
-| ID      | Tarefa                                         | Estado       |
-| ------- | ---------------------------------------------- | ------------ |
-| REL-001 | Preparar publicação independente do modo local | Planejamento |
+Nenhuma tarefa iniciada. A próxima ação deve ser escolhida sem misturar escopos.
 
 ## Próximas
 
@@ -33,3 +31,4 @@
 | AI-001    | Guardrails de entrada e fatos fundamentados | 18 testes e build passando                |
 | DEMO-003  | Entendimento e artefatos no modo local      | 23 testes e build passando                |
 | DOC-003   | Criar manual canônico do sistema            | Documento e rota `/manual` sincronizados  |
+| PORT-001  | Publicar demonstração independente          | URL Cloudflare e smoke test público       |

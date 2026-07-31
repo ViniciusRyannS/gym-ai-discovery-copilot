@@ -33,11 +33,12 @@ concluído com evidência real; limitações externas devem permanecer explícit
 - [x] Criar login e cadastro fictícios locais.
 - [x] Persistir sessão demo no navegador.
 - [x] Criar rota pública `/demo`.
+- [x] Publicar `/demo` em URL HTTPS independente.
 - [x] Criar portfólio, discovery e chat determinísticos no modo demo.
 - [ ] Validar login real confirmado no ambiente conectado.
 - [ ] Decidir se o OAuth Google será configurado ou removido da documentação.
 - [x] Implementar Entendimento e Artefatos locais com identificação explícita.
-- [ ] Executar teste visual mobile e desktop do modo demo.
+- [x] Executar teste visual mobile e desktop do modo demo.
 
 ## 4. Qualidade do discovery e IA
 
@@ -82,6 +83,8 @@ concluído com evidência real; limitações externas devem permanecer explícit
 - [ ] Criar release candidata com tag.
 - [ ] Tornar o repositório público somente após a revisão de segredos, autoria e
       documentação.
+- [x] Validar acesso direto e refresh da rota pública `/demo`.
+- [x] Validar ausência de chamadas ao Supabase e ao gateway na demo pública.
 
 ## Quality gate final
 

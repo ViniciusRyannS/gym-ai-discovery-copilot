@@ -13,6 +13,8 @@ de apoio à decisão.
 A rota pública `/demo` apresenta, sem login e sem dependências externas, a
 jornada completa:
 
+[▶ Abrir demonstração pública](https://viniciusryanns-gym-ai-discovery-copilot.east-gigantspinosaurus.workers.dev/demo)
+
 1. briefing incompleto;
 2. perguntas contextualizadas;
 3. evolução da cobertura;

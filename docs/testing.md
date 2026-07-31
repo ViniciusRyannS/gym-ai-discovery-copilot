@@ -121,3 +121,35 @@ Passou
 Casos adicionados: Entendimento local, quatro tipos de artefato, aviso de
 revisão, uso de evidências locais, deduplicação de tipos solicitados e
 recuperação de ruído sem avanço de cobertura.
+
+## Execução de 2026-07-31 — PORT-001
+
+```text
+npm run typecheck
+Passou
+
+npm test
+23 testes, 23 passaram, 0 falharam
+
+npm exec -- eslint src/routes/__root.tsx
+Passou
+
+npm run build sem .env
+Passou; o arquivo local foi restaurado automaticamente
+```
+
+Smoke test do deployment com Playwright Core temporário e Microsoft Edge:
+
+```text
+GET /demo: 200
+refresh/deep link /demo: 200
+desktop 1366x768: jornada aprovada, sem overflow do documento
+mobile 390x844: jornada aprovada, sem overflow do documento
+login solicitado: não
+requisições Supabase: 0
+requisições Lovable AI Gateway: 0
+retorno ao briefing inicial: aprovado
+```
+
+O Playwright Core foi usado somente como ferramenta temporária de validação e
+não foi adicionado às dependências nesta tarefa.
