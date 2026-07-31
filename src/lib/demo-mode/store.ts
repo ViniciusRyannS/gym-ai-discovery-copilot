@@ -1,15 +1,16 @@
-import { getDemoSession } from "./auth";
-import { assessDiscoveryInput } from "../discovery-input";
+import { getDemoSession } from "./auth.ts";
+import { assessDiscoveryInput } from "../discovery-input.ts";
 import {
   buildDemoArtifacts,
   buildDemoUnderstanding,
   type DemoArtifact,
   type DemoArtifactKind,
   type DemoUnderstanding,
-} from "./deliverables";
-import { getDemoCoverage, getDemoTurn } from "./replies";
+} from "./deliverables.ts";
+import { getDemoCoverage, getDemoTurn } from "./replies.ts";
 
 const STORE_PREFIX = "gymai.demo.data.v1";
+const EXAMPLE_CONVERSATION_TITLE = "[EXEMPLO] Retrabalho na produção";
 
 export type DemoPortfolioItem = {
   id: string;
@@ -183,6 +184,156 @@ export function createDemoConversation(input: {
     understandings: [],
     artifacts: [],
   });
+  save(store);
+  return conversation;
+}
+
+export function openCompleteDemoConversation() {
+  const store = load();
+  const existing = store.conversations.find(
+    (item) => item.conversation.title === EXAMPLE_CONVERSATION_TITLE,
+  );
+  if (existing) return existing.conversation;
+
+  const createdAt = Date.now();
+  const conversation: DemoConversation = {
+    id: id(),
+    title: EXAMPLE_CONVERSATION_TITLE,
+    service_type: "Modernização de processos e automação",
+    briefing:
+      "O cliente relata retrabalho no apontamento de produção, atrasos nas entregas e pouca clareza sobre onde os erros começam.",
+    created_at: new Date(createdAt).toISOString(),
+  };
+  const turns: Array<Pick<DemoMessage, "role" | "content">> = [
+    {
+      role: "user",
+      content:
+        "O cliente está com muito retrabalho no fechamento das ordens de produção. Isso está atrasando entregas e ninguém sabe exatamente onde o erro começa.",
+    },
+    {
+      role: "assistant",
+      content:
+        "**Contexto de negócio:** qual resultado mensurável precisa justificar este projeto para o decisor?\n\nEsta é uma conversa demonstrativa. Nenhuma informação é enviada para serviços externos.",
+    },
+    {
+      role: "user",
+      content:
+        "A diretoria quer reduzir o retrabalho em pelo menos 40% e recuperar dois dias no prazo médio de entrega até o fim do próximo trimestre.",
+    },
+    {
+      role: "assistant",
+      content:
+        "**Ambiente atual:** onde os apontamentos são registrados hoje e quais sistemas ou integrações participam do processo?",
+    },
+    {
+      role: "user",
+      content:
+        "Os operadores anotam em planilhas por turno. Depois um analista digita tudo novamente no ERP Totvs, que envia dados ao sistema de qualidade.",
+    },
+    {
+      role: "assistant",
+      content:
+        "**Escopo técnico:** o que precisa estar obrigatoriamente na primeira entrega e o que pode ficar para uma fase posterior?",
+    },
+    {
+      role: "user",
+      content:
+        "Na primeira entrega precisamos capturar o apontamento uma única vez, validar campos obrigatórios e integrar com o ERP. Previsão de demanda pode ficar para depois.",
+    },
+    {
+      role: "assistant",
+      content:
+        "**Operação:** quais SLAs, janelas de manutenção e responsabilidades de suporte devem ser considerados?",
+    },
+    {
+      role: "user",
+      content:
+        "A fábrica opera em três turnos e só pode parar aos domingos entre 2h e 5h. TI atende o ERP e Engenharia de Processos será dona das regras.",
+    },
+    {
+      role: "assistant",
+      content:
+        "**Segurança e conformidade:** existem dados pessoais, requisitos de auditoria ou controles obrigatórios?",
+    },
+    {
+      role: "user",
+      content:
+        "Precisamos registrar operador, horário e alterações para auditoria ISO 9001. Não haverá dado sensível além da matrícula corporativa.",
+    },
+    {
+      role: "assistant",
+      content:
+        "**Volumetria:** quantos apontamentos são feitos, quais são os picos e qual crescimento é esperado?",
+    },
+    {
+      role: "user",
+      content:
+        "São cerca de 1.800 apontamentos por dia, com pico de 250 no fechamento de cada turno. A nova linha deve aumentar o volume em 30% no próximo ano.",
+    },
+    {
+      role: "assistant",
+      content:
+        "**Criticidade:** qual é o impacto financeiro ou operacional quando o processo fica indisponível ou contém erros?",
+    },
+    {
+      role: "user",
+      content:
+        "Uma hora sem apontamento não para as máquinas, mas gera fila manual. Erros descobertos no dia seguinte podem atrasar um lote inteiro e custar até R$ 80 mil em hora extra e frete emergencial.",
+    },
+    {
+      role: "assistant",
+      content: "**Governança:** quem patrocina, aprova e valida tecnicamente a iniciativa?",
+    },
+    {
+      role: "user",
+      content:
+        "O diretor industrial patrocina, o gerente de TI aprova a arquitetura e os supervisores de produção validam o fluxo em um piloto na Linha 2.",
+    },
+    {
+      role: "assistant",
+      content:
+        "**Premissas e exclusões:** quais dependências são assumidas e o que está explicitamente fora do escopo inicial?",
+    },
+    {
+      role: "user",
+      content:
+        "Vamos reutilizar tablets industriais e as APIs homologadas do Totvs. Trocar o ERP, prever demanda e automatizar manutenção ficam fora do MVP.",
+    },
+    {
+      role: "assistant",
+      content:
+        "**Riscos e validações:** o que precisa ser comprovado antes de fechar solução, prazo e investimento?",
+    },
+    {
+      role: "user",
+      content:
+        "Precisamos testar o Wi-Fi no chão de fábrica, confirmar limites da API do ERP e executar um piloto de duas semanas sem eliminar a planilha de contingência.",
+    },
+    {
+      role: "assistant",
+      content:
+        "**Discovery consolidado:** o problema deixou de ser apenas ‘retrabalho’. Agora há meta, processo atual, integrações, escopo do MVP, restrições operacionais, auditoria, volume, impacto, responsáveis e validações.\n\nA hipótese de solução é capturar o apontamento uma única vez nos tablets, validar dados na origem e integrar com o Totvs, começando por um piloto reversível na Linha 2. Abra **Entendimento** e **Artefatos** para ver como este contexto foi transformado em entregáveis revisáveis.",
+    },
+  ];
+  const messages: DemoMessage[] = turns.map((turn, index) => ({
+    id: id(),
+    ...turn,
+    created_at: new Date(createdAt + index + 1).toISOString(),
+  }));
+  const coverage = getDemoCoverage(10);
+  const context = { conversation, messages, coverage };
+  const detail: DemoConversationDetail = {
+    conversation,
+    messages,
+    state: {
+      coverage_by_category: coverage,
+      primary_category: "riscos_validacoes",
+    },
+    understandings: [buildDemoUnderstanding(context, 1)],
+    artifacts: buildDemoArtifacts(context, ["prd", "adr", "spec", "user_story"]),
+  };
+
+  store.conversations.unshift(detail);
   save(store);
   return conversation;
 }

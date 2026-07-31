@@ -82,6 +82,11 @@ e `.md`.
 Conduz a conversa por categorias e mantém o histórico. Saudações e entradas
 inequivocamente sem informação recebem orientação sem aumentar a cobertura.
 
+No modo local, a página de novo discovery também oferece uma conversa completa
+de exemplo sobre retrabalho na produção. Ela percorre as dez categorias e já
+inclui cobertura, Entendimento Executivo e os quatro artefatos para avaliação
+rápida, permanecendo aberta para novas mensagens.
+
 No ambiente conectado, fatos extraídos precisam indicar evidência literal da
 mensagem do usuário.
 

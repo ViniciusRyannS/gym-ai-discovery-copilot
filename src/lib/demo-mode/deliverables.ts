@@ -1,6 +1,6 @@
 import { DISCOVERY_CATEGORIES } from "../discovery-defaults.ts";
 
-import type { DemoConversation, DemoMessage } from "./store";
+import type { DemoConversation, DemoMessage } from "./store.ts";
 
 export type DemoUnderstanding = {
   id: string;

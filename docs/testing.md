@@ -153,3 +153,36 @@ retorno ao briefing inicial: aprovado
 
 O Playwright Core foi usado somente como ferramenta temporária de validação e
 não foi adicionado às dependências nesta tarefa.
+
+## Execução de 2026-07-31 — DEMO-004
+
+```text
+npm ci
+Passou após encerrar somente o servidor Vite que mantinha um binário bloqueado
+
+npm run typecheck
+Passou
+
+npm test
+25 testes, 25 passaram, 0 falharam
+
+npm exec -- eslint <arquivos DEMO-004>
+Passou
+
+npm run build
+Passou
+```
+
+Casos adicionados: criação da conversa completa, presença das dez categorias,
+ordem de papéis, cobertura avançada, entendimento, quatro artefatos,
+idempotência e continuidade da conversa.
+
+Smoke do deployment:
+
+```text
+/auth: HTTP 200
+/demo: HTTP 200
+asset público contém “Abrir conversa exemplo”: sim
+asset público contém o cenário de retrabalho: sim
+asset público contém aviso sem envio externo: sim
+```

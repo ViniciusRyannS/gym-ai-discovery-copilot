@@ -4,7 +4,7 @@ import { useServerFn } from "@tanstack/react-start";
 import { useState } from "react";
 import { motion } from "motion/react";
 import { toast } from "sonner";
-import { Sparkles, ArrowRight, Wand2, Trash2 } from "lucide-react";
+import { Sparkles, ArrowRight, MessageSquareText, Wand2, Trash2 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -20,6 +20,7 @@ import {
   createDemoConversation,
   listDemoConversations,
   listDemoPortfolio,
+  openCompleteDemoConversation,
 } from "@/lib/demo-mode/store";
 
 export const Route = createFileRoute("/_authenticated/app")({
@@ -87,6 +88,15 @@ function Home() {
     onError: (e: Error) => toast.error(e.message),
   });
 
+  const exampleMut = useMutation({
+    mutationFn: () => Promise.resolve(openCompleteDemoConversation()),
+    onSuccess: (conversation) => {
+      qc.invalidateQueries({ queryKey: ["conversations"] });
+      navigate({ to: "/c/$conversationId", params: { conversationId: conversation.id } });
+    },
+    onError: (error: Error) => toast.error(error.message),
+  });
+
   function pick(name: string) {
     setServiceType(name);
     if (!title) setTitle(name);
@@ -120,9 +130,28 @@ function Home() {
         </p>
 
         {isDemo && (
-          <div className="mt-6 rounded-2xl border border-primary/25 bg-primary/[0.06] px-4 py-3 text-xs leading-5 text-muted-foreground">
-            <span className="font-medium text-primary">MODO DEMO</span> · Seus dados ficam somente
-            neste navegador e as respostas do chat são simuladas para uma apresentação previsível.
+          <div className="mt-6 rounded-2xl border border-primary/25 bg-primary/[0.06] p-4 text-xs leading-5 text-muted-foreground">
+            <div>
+              <span className="font-medium text-primary">MODO DEMO</span> · Seus dados ficam somente
+              neste navegador e as respostas do chat são simuladas para uma apresentação previsível.
+            </div>
+            <div className="mt-3 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+              <p className="max-w-xl">
+                Quer ver o resultado primeiro? Abra um caso completo sobre retrabalho na produção,
+                com conversa, cobertura, entendimento e artefatos já preparados.
+              </p>
+              <Button
+                type="button"
+                size="sm"
+                variant="outline"
+                disabled={exampleMut.isPending}
+                onClick={() => exampleMut.mutate()}
+                className="shrink-0 border-primary/40 text-foreground"
+              >
+                <MessageSquareText className="mr-1.5 h-3.5 w-3.5 text-primary" />
+                {exampleMut.isPending ? "Preparando exemplo…" : "Abrir conversa exemplo"}
+              </Button>
+            </div>
           </div>
         )}
 

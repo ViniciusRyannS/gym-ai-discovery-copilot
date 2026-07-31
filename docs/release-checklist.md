@@ -35,6 +35,7 @@ concluído com evidência real; limitações externas devem permanecer explícit
 - [x] Criar rota pública `/demo`.
 - [x] Publicar `/demo` em URL HTTPS independente.
 - [x] Criar portfólio, discovery e chat determinísticos no modo demo.
+- [x] Adicionar conversa completa de exemplo com entendimento e artefatos.
 - [ ] Validar login real confirmado no ambiente conectado.
 - [ ] Decidir se o OAuth Google será configurado ou removido da documentação.
 - [x] Implementar Entendimento e Artefatos locais com identificação explícita.
