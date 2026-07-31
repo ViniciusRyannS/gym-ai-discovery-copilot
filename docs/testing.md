@@ -2,18 +2,18 @@
 
 ## Quality gate
 
-| Verificação     | Estado inicial                    |
-| --------------- | --------------------------------- |
-| Install         | Passou                            |
-| Dev server      | Passou                            |
-| Lint            | Falhou: 733 erros e 6 avisos      |
+| Verificação     | Estado inicial                     |
+| --------------- | ---------------------------------- |
+| Install         | Passou                             |
+| Dev server      | Passou                             |
+| Lint            | Falhou: 733 erros e 6 avisos       |
 | Typecheck       | Passou após correção dos redirects |
-| Test            | 7 testes de autenticação passando |
-| Build           | Passou                            |
-| Login por senha | Falha de UX/estado de confirmação |
-| Google OAuth    | Não validado localmente           |
-| RLS isolation   | Não validado                      |
-| MCP             | Não validado ponta a ponta        |
+| Test            | 7 testes de autenticação passando  |
+| Build           | Passou                             |
+| Login por senha | Falha de UX/estado de confirmação  |
+| Google OAuth    | Não validado localmente            |
+| RLS isolation   | Não validado                       |
+| MCP             | Não validado ponta a ponta         |
 
 ## Evidência da autenticação
 
@@ -82,3 +82,22 @@ Unsupported provider: missing OAuth secret
 ```
 
 Decisão: ocultar Google até a configuração externa ser concluída.
+
+## Execução de 2026-07-31 — AI-001
+
+```text
+npm run typecheck
+Passou
+
+npm test
+18 testes, 18 passaram, 0 falharam
+
+npm exec eslint -- <arquivos AI-001>
+Passou
+
+npm run build
+Passou
+```
+
+Casos adicionados: saudações, ruído, mensagens de teste, respostas curtas
+plausíveis, resposta de recuperação e validação de evidência literal.

@@ -21,6 +21,9 @@ testes executados e resultados estiverem registrados.
 
 ## Tarefa ativa
 
-`AUTH-001` — estabilização do cadastro e login.
+`AI-002` — fallback do gateway e atomicidade do fluxo de mensagens.
 
-Especificação: [specs/auth-stabilization.md](specs/auth-stabilization.md).
+AI-001 concluída em
+[sessions/2026-07-31-discovery-input-guardrails.md](sessions/2026-07-31-discovery-input-guardrails.md).
+
+Checklist consolidado: [release-checklist.md](release-checklist.md).
