@@ -1,6 +1,6 @@
 # Sessão — manual do sistema e avaliação do MVP
 
-**Data:** 31 de julho de 2026  
+**Data:** 31 de julho de 2026
 **Tarefa:** DOC-003
 
 ## Objetivo
