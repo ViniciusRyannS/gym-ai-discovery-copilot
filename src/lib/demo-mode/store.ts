@@ -1,4 +1,5 @@
 import { getDemoSession } from "./auth";
+import { assessDiscoveryInput } from "../discovery-input";
 import {
   buildDemoArtifacts,
   buildDemoUnderstanding,
@@ -6,7 +7,7 @@ import {
   type DemoArtifactKind,
   type DemoUnderstanding,
 } from "./deliverables";
-import { getDemoCoverage, getDemoReply } from "./replies";
+import { getDemoCoverage, getDemoTurn } from "./replies";
 
 const STORE_PREFIX = "gymai.demo.data.v1";
 
@@ -196,7 +197,11 @@ export function sendDemoMessage(conversationId: string, content: string) {
   const store = load();
   const detail = store.conversations.find((item) => item.conversation.id === conversationId);
   if (!detail) throw new Error("Discovery demonstrativo não encontrado.");
-  const userMessages = detail.messages.filter((message) => message.role === "user").length;
+  const informativeMessages = detail.messages.filter(
+    (message) =>
+      message.role === "user" && assessDiscoveryInput(message.content).kind === "informative",
+  ).length;
+  const turn = getDemoTurn(content, informativeMessages, detail.conversation.service_type);
   const timestamp = Date.now();
   detail.messages.push(
     {
@@ -208,11 +213,13 @@ export function sendDemoMessage(conversationId: string, content: string) {
     {
       id: id(),
       role: "assistant",
-      content: getDemoReply(userMessages),
+      content: turn.reply,
       created_at: new Date(timestamp + 1).toISOString(),
     },
   );
-  detail.state.coverage_by_category = getDemoCoverage(userMessages + 1);
+  if (turn.advancesCoverage) {
+    detail.state.coverage_by_category = getDemoCoverage(informativeMessages + 1);
+  }
   save(store);
   return detail;
 }

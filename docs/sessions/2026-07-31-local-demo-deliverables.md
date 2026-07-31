@@ -24,7 +24,8 @@ Stories, persistindo os resultados após atualização.
 - painéis locais acessíveis pelos botões originais do chat;
 - conteúdo derivado do briefing, respostas e cobertura;
 - persistência por conta fictícia no navegador;
-- avisos de simulação determinística e revisão humana.
+- avisos de simulação determinística e revisão humana;
+- ruído e saudações não avançam a cobertura no chat local.
 
 ## Evidências
 
@@ -33,7 +34,7 @@ npm run typecheck
 Passou
 
 npm test
-21 testes, 21 passaram, 0 falharam
+23 testes, 23 passaram, 0 falharam
 
 npm exec eslint -- <arquivos DEMO-003>
 Passou

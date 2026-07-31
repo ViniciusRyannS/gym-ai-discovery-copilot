@@ -1,4 +1,5 @@
-import { DISCOVERY_CATEGORIES, EMPTY_COVERAGE } from "@/lib/discovery-defaults";
+import { DISCOVERY_CATEGORIES, EMPTY_COVERAGE } from "../discovery-defaults.ts";
+import { assessDiscoveryInput, getInputRecoveryReply } from "../discovery-input.ts";
 
 const prompts = [
   "**Contexto de negócio:** qual resultado mensurável precisa justificar este projeto para o decisor?",
@@ -16,6 +17,20 @@ const prompts = [
 export function getDemoReply(messageCount: number) {
   const index = Math.min(messageCount, prompts.length - 1);
   return `${prompts[index]}\n\nVou registrar sua resposta como contexto demonstrativo. Neste modo, nenhuma informação é enviada para serviços externos.`;
+}
+
+export function getDemoTurn(content: string, informativeMessageCount: number, serviceType: string) {
+  const assessment = assessDiscoveryInput(content);
+  if (assessment.kind !== "informative") {
+    return {
+      advancesCoverage: false,
+      reply: getInputRecoveryReply(assessment.kind, serviceType),
+    };
+  }
+  return {
+    advancesCoverage: true,
+    reply: getDemoReply(informativeMessageCount),
+  };
 }
 
 export function getDemoCoverage(messageCount: number) {

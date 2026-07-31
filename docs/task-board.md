@@ -31,4 +31,4 @@
 | DEP-001   | Definir npm como gerenciador                | `package-lock.json` e Bun ignorado        |
 | GIT-001   | Criar repositório próprio                   | `main` sincronizada com GitHub            |
 | AI-001    | Guardrails de entrada e fatos fundamentados | 18 testes e build passando                |
-| DEMO-003  | Entendimento e artefatos no modo local      | 21 testes e build passando                |
+| DEMO-003  | Entendimento e artefatos no modo local      | 23 testes e build passando                |

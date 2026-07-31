@@ -109,7 +109,7 @@ npm run typecheck
 Passou
 
 npm test
-21 testes, 21 passaram, 0 falharam
+23 testes, 23 passaram, 0 falharam
 
 npm exec eslint -- <arquivos DEMO-003>
 Passou
@@ -119,4 +119,5 @@ Passou
 ```
 
 Casos adicionados: Entendimento local, quatro tipos de artefato, aviso de
-revisão, uso de evidências locais e deduplicação de tipos solicitados.
+revisão, uso de evidências locais, deduplicação de tipos solicitados e
+recuperação de ruído sem avanço de cobertura.
