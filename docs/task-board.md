@@ -8,12 +8,12 @@
 
 ## Próximas
 
-| ID      | Tarefa                                   | Prioridade |
-| ------- | ---------------------------------------- | ---------- |
-| SEC-002 | Fortalecer RLS e constraints             | P0         |
-| AI-002  | Fallback e atomicidade do fluxo remoto   | P0         |
-| QA-003  | Adicionar CI e baseline de lint          | P1         |
-| DOC-002 | Revisar documentação final e screenshots | P1         |
+| ID      | Tarefa                                     | Prioridade |
+| ------- | ------------------------------------------ | ---------- |
+| SEC-002 | Fortalecer RLS e constraints               | P0         |
+| AI-002  | Fallback e atomicidade do fluxo remoto     | P0         |
+| QA-003  | Adicionar CI e baseline de lint            | P1         |
+| DOC-002 | Adicionar screenshots e mídia de portfólio | P1         |
 
 ## Concluídas
 
@@ -32,3 +32,4 @@
 | GIT-001   | Criar repositório próprio                   | `main` sincronizada com GitHub            |
 | AI-001    | Guardrails de entrada e fatos fundamentados | 18 testes e build passando                |
 | DEMO-003  | Entendimento e artefatos no modo local      | 23 testes e build passando                |
+| DOC-003   | Criar manual canônico do sistema            | Documento e rota `/manual` sincronizados  |

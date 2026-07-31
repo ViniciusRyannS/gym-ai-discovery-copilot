@@ -166,6 +166,7 @@ Detalhes adicionais estão em [docs/project-origin.md](docs/project-origin.md).
 
 ## Documentação
 
+- [Manual do sistema](docs/manual-do-sistema.md)
 - [Contexto do produto](docs/product-context.md)
 - [Contexto técnico](docs/technical-context.md)
 - [Plano de engenharia](docs/engineering-plan.md)

@@ -66,7 +66,8 @@ concluído com evidência real; limitações externas devem permanecer explícit
 
 - [x] Demonstrar briefing, perguntas, cobertura, entendimento e artefatos.
 - [x] Manter aviso de revisão humana.
-- [ ] Corrigir textos/documentação desatualizados.
+- [x] Substituir o manual desatualizado por uma versão canônica e verificável.
+- [ ] Revisar os demais textos e alegações da interface.
 - [ ] Validar acessibilidade por teclado, foco e contraste.
 - [ ] Validar responsividade das rotas principais.
 - [ ] Melhorar recuperação de estados vazios e erros.
