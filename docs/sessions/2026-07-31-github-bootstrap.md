@@ -36,3 +36,14 @@ evolução pós-entrega.
 - primeiro commit criado;
 - push da branch `main` confirmado.
 
+## Resultado
+
+- repositório inicializado na branch `main`;
+- remote `origin` configurado para
+  `https://github.com/ViniciusRyannS/gym-ai-discovery-copilot.git`;
+- primeiro snapshot criado no commit `eb3f9ae`;
+- branch `main` enviada e configurada para acompanhar `origin/main`;
+- `.env`, `node_modules`, builds, metadados `.lovable` e arquivos do Bun
+  permaneceram fora do histórico;
+- README e documento de origem preservam a autoria coletiva;
+- repositório deve permanecer privado até a revisão final de publicação.
