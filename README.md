@@ -55,15 +55,17 @@ Este repositório está em estabilização pós-entrega acadêmica.
 - criação de discovery;
 - chat determinístico;
 - cobertura progressiva;
+- Entendimento Executivo local versionado;
+- PRD, ADR, Spec e User Stories locais em Markdown;
 - persistência no navegador;
 - rota pública `/demo`.
 
-### Dependente do ambiente Lovable/Supabase
+### Dependente do ambiente Lovable/Supabase para funcionamento real com IA
 
 - autenticação online;
 - chamadas reais ao Lovable AI Gateway;
-- Entendimento Executivo persistido;
-- geração e persistência de artefatos;
+- Entendimento Executivo gerado por modelo;
+- geração de artefatos por modelo;
 - Prompt Studio;
 - MCP e RLS.
 
@@ -179,4 +181,3 @@ Detalhes adicionais estão em [docs/project-origin.md](docs/project-origin.md).
 Nenhuma licença de código aberto foi definida. Até que os integrantes decidam
 uma política de distribuição, todos os direitos permanecem reservados aos seus
 respectivos autores.
-

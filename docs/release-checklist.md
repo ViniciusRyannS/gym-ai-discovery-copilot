@@ -36,7 +36,7 @@ concluído com evidência real; limitações externas devem permanecer explícit
 - [x] Criar portfólio, discovery e chat determinísticos no modo demo.
 - [ ] Validar login real confirmado no ambiente conectado.
 - [ ] Decidir se o OAuth Google será configurado ou removido da documentação.
-- [ ] Implementar Entendimento e Artefatos locais ou manter a limitação explícita.
+- [x] Implementar Entendimento e Artefatos locais com identificação explícita.
 - [ ] Executar teste visual mobile e desktop do modo demo.
 
 ## 4. Qualidade do discovery e IA

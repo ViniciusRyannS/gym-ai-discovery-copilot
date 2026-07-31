@@ -1,4 +1,11 @@
 import { getDemoSession } from "./auth";
+import {
+  buildDemoArtifacts,
+  buildDemoUnderstanding,
+  type DemoArtifact,
+  type DemoArtifactKind,
+  type DemoUnderstanding,
+} from "./deliverables";
 import { getDemoCoverage, getDemoReply } from "./replies";
 
 const STORE_PREFIX = "gymai.demo.data.v1";
@@ -34,6 +41,8 @@ export type DemoConversationDetail = {
     coverage_by_category: Record<string, number>;
     primary_category: string;
   };
+  understandings: DemoUnderstanding[];
+  artifacts: DemoArtifact[];
 };
 
 type DemoStore = {
@@ -98,7 +107,15 @@ function load(): DemoStore {
   const key = storageKey();
   try {
     const stored = localStorage.getItem(key);
-    if (stored) return JSON.parse(stored) as DemoStore;
+    if (stored) {
+      const parsed = JSON.parse(stored) as DemoStore;
+      parsed.conversations = parsed.conversations.map((detail) => ({
+        ...detail,
+        understandings: detail.understandings ?? [],
+        artifacts: detail.artifacts ?? [],
+      }));
+      return parsed;
+    }
   } catch {
     // The fresh store below keeps the demo usable if stored data is malformed.
   }
@@ -162,6 +179,8 @@ export function createDemoConversation(input: {
       coverage_by_category: getDemoCoverage(0),
       primary_category: "contexto_negocio",
     },
+    understandings: [],
+    artifacts: [],
   });
   save(store);
   return conversation;
@@ -204,4 +223,38 @@ export function deleteDemoConversation(conversationId: string) {
     (item) => item.conversation.id !== conversationId,
   );
   save(store);
+}
+
+export function generateDemoUnderstanding(conversationId: string) {
+  const store = load();
+  const detail = store.conversations.find((item) => item.conversation.id === conversationId);
+  if (!detail) throw new Error("Discovery demonstrativo não encontrado.");
+  const understanding = buildDemoUnderstanding(
+    {
+      conversation: detail.conversation,
+      messages: detail.messages,
+      coverage: detail.state.coverage_by_category,
+    },
+    detail.understandings.length + 1,
+  );
+  detail.understandings.unshift(understanding);
+  save(store);
+  return understanding;
+}
+
+export function generateDemoArtifacts(conversationId: string, kinds: DemoArtifactKind[]) {
+  const store = load();
+  const detail = store.conversations.find((item) => item.conversation.id === conversationId);
+  if (!detail) throw new Error("Discovery demonstrativo não encontrado.");
+  const artifacts = buildDemoArtifacts(
+    {
+      conversation: detail.conversation,
+      messages: detail.messages,
+      coverage: detail.state.coverage_by_category,
+    },
+    kinds,
+  );
+  detail.artifacts = [...artifacts, ...detail.artifacts];
+  save(store);
+  return artifacts;
 }

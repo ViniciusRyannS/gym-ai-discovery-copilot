@@ -21,9 +21,12 @@ testes executados e resultados estiverem registrados.
 
 ## Tarefa ativa
 
-`AI-002` — fallback do gateway e atomicidade do fluxo de mensagens.
+`REL-001` — preparar publicação independente para acesso por URL.
 
 AI-001 concluída em
 [sessions/2026-07-31-discovery-input-guardrails.md](sessions/2026-07-31-discovery-input-guardrails.md).
+
+AI-002 permanece planejada para o ambiente conectado, mas foi reposicionada
+depois da conclusão da jornada local de portfólio.
 
 Checklist consolidado: [release-checklist.md](release-checklist.md).

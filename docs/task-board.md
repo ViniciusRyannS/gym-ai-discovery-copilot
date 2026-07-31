@@ -2,15 +2,16 @@
 
 ## Em andamento
 
-| ID     | Tarefa                                | Estado                 |
-| ------ | ------------------------------------- | ---------------------- |
-| AI-002 | Fallback e atomicidade do fluxo da IA | Especificação pendente |
+| ID      | Tarefa                                         | Estado       |
+| ------- | ---------------------------------------------- | ------------ |
+| REL-001 | Preparar publicação independente do modo local | Planejamento |
 
 ## Próximas
 
 | ID      | Tarefa                                   | Prioridade |
 | ------- | ---------------------------------------- | ---------- |
 | SEC-002 | Fortalecer RLS e constraints             | P0         |
+| AI-002  | Fallback e atomicidade do fluxo remoto   | P0         |
 | QA-003  | Adicionar CI e baseline de lint          | P1         |
 | DOC-002 | Revisar documentação final e screenshots | P1         |
 
@@ -30,3 +31,4 @@
 | DEP-001   | Definir npm como gerenciador                | `package-lock.json` e Bun ignorado        |
 | GIT-001   | Criar repositório próprio                   | `main` sincronizada com GitHub            |
 | AI-001    | Guardrails de entrada e fatos fundamentados | 18 testes e build passando                |
+| DEMO-003  | Entendimento e artefatos no modo local      | 21 testes e build passando                |

@@ -101,3 +101,22 @@ Passou
 
 Casos adicionados: saudações, ruído, mensagens de teste, respostas curtas
 plausíveis, resposta de recuperação e validação de evidência literal.
+
+## Execução de 2026-07-31 — DEMO-003
+
+```text
+npm run typecheck
+Passou
+
+npm test
+21 testes, 21 passaram, 0 falharam
+
+npm exec eslint -- <arquivos DEMO-003>
+Passou
+
+npm run build
+Passou
+```
+
+Casos adicionados: Entendimento local, quatro tipos de artefato, aviso de
+revisão, uso de evidências locais e deduplicação de tipos solicitados.

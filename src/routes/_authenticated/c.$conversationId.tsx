@@ -14,6 +14,8 @@ import { CoverageCockpit } from "@/components/CoverageCockpit";
 import { MarkdownView } from "@/components/MarkdownView";
 import { UnderstandingDrawer } from "@/components/UnderstandingDrawer";
 import { ArtifactsPanel } from "@/components/ArtifactsPanel";
+import { LocalArtifactsPanel } from "@/components/demo/LocalArtifactsPanel";
+import { LocalUnderstandingDrawer } from "@/components/demo/LocalUnderstandingDrawer";
 import { normalizeAssistantContent } from "@/lib/normalize-reply";
 import { deleteConversation, getConversation, sendMessage } from "@/lib/conversations.functions";
 import { EMPTY_COVERAGE } from "@/lib/discovery-defaults";
@@ -113,6 +115,8 @@ function ChatPage() {
             EMPTY_COVERAGE,
           primary_category: result.state?.primary_category ?? "contexto_negocio",
         },
+        understandings: [],
+        artifacts: [],
       };
     },
   });
@@ -197,26 +201,10 @@ function ChatPage() {
               <span className="h-1.5 w-1.5 rounded-full bg-primary shadow-[0_0_10px] shadow-primary" />
               {(overall * 100).toFixed(0)}% cobertura
             </div>
-            <Button
-              size="sm"
-              variant="outline"
-              onClick={() =>
-                isDemo
-                  ? toast.info("Veja o Entendimento Executivo completo na rota /demo.")
-                  : setDrawerOpen(true)
-              }
-            >
+            <Button size="sm" variant="outline" onClick={() => setDrawerOpen(true)}>
               <Sparkles className="mr-1.5 h-3.5 w-3.5" /> Entendimento
             </Button>
-            <Button
-              size="sm"
-              variant="outline"
-              onClick={() =>
-                isDemo
-                  ? toast.info("Veja os artefatos completos na rota /demo.")
-                  : setArtifactsOpen(true)
-              }
-            >
+            <Button size="sm" variant="outline" onClick={() => setArtifactsOpen(true)}>
               <FileText className="mr-1.5 h-3.5 w-3.5" /> Artefatos
             </Button>
             <Button
@@ -296,7 +284,20 @@ function ChatPage() {
         <CoverageCockpit coverage={coverage} primaryCategory={data?.state?.primary_category} />
       </aside>
 
-      {!isDemo && (
+      {isDemo ? (
+        <>
+          <LocalUnderstandingDrawer
+            open={drawerOpen}
+            onOpenChange={setDrawerOpen}
+            conversationId={conversationId}
+          />
+          <LocalArtifactsPanel
+            open={artifactsOpen}
+            onOpenChange={setArtifactsOpen}
+            conversationId={conversationId}
+          />
+        </>
+      ) : (
         <>
           <UnderstandingDrawer
             open={drawerOpen}
