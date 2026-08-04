@@ -10,7 +10,7 @@ Nenhuma tarefa iniciada. A próxima ação deve ser escolhida sem misturar escop
 | ------- | ------------------------------------------ | ---------- |
 | SEC-002 | Fortalecer RLS e constraints               | P0         |
 | AI-002  | Fallback e atomicidade do fluxo remoto     | P0         |
-| QA-003  | Adicionar CI e baseline de lint            | P1         |
+| QA-004  | Resolver ou definir baseline de lint       | P1         |
 | DOC-002 | Adicionar screenshots e mídia de portfólio | P1         |
 
 ## Concluídas
@@ -36,3 +36,4 @@ Nenhuma tarefa iniciada. A próxima ação deve ser escolhida sem misturar escop
 | DOC-004   | Criar documentos de handoff para IA e mentor | Dois guias canônicos em Markdown          |
 | PORT-007  | Corrigir nome genérico do pacote             | npm ci, 25 testes e build aprovados       |
 | DOC-005   | Alinhar narrativa técnica atual              | UI, docs, deploy e smoke test aprovados   |
+| QA-003    | Adicionar GitHub Actions CI                  | Workflow verde no GitHub Actions          |

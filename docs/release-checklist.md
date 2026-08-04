@@ -25,7 +25,7 @@ concluído com evidência real; limitações externas devem permanecer explícit
 - [x] Validar build de produção.
 - [ ] Corrigir o lint global ou definir baseline explícito.
 - [x] Atualizar o nome genérico do pacote.
-- [ ] Adicionar CI para typecheck, testes e build.
+- [x] Adicionar CI para typecheck, testes e build.
 
 ## 3. Autenticação e demonstração
 
@@ -94,6 +94,7 @@ concluído com evidência real; limitações externas devem permanecer explícit
 - [x] typecheck
 - [x] testes unitários
 - [x] build
+- [x] CI no GitHub Actions
 - [x] login demo
 - [x] portfólio demo
 - [x] novo discovery demo

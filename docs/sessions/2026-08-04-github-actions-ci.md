@@ -16,4 +16,13 @@ Publish an automatic and visible quality gate for every push and pull request.
 
 ## Status
 
-In progress.
+Completed.
+
+## Evidence
+
+- commit published: `7265bb3` (`ci: validate typecheck tests and build`);
+- GitHub Actions run: [30948719261](https://github.com/ViniciusRyannS/gym-ai-discovery-copilot/actions/runs/30948719261);
+- result: `success` on Ubuntu with Node.js 22;
+- blocking job completed: install, typecheck, tests and production build;
+- the workflow requires no Supabase, Lovable or AI gateway secret;
+- the global lint debt remains explicit and outside this gate.

@@ -154,6 +154,25 @@ retorno ao briefing inicial: aprovado
 O Playwright Core foi usado somente como ferramenta temporária de validação e
 não foi adicionado às dependências nesta tarefa.
 
+## Execução de 2026-08-04 — QA-003
+
+O primeiro workflow de CI foi executado no GitHub Actions após um push real na
+`main`:
+
+```text
+ambiente: ubuntu-latest e Node.js 22
+npm ci: passou
+npm run typecheck: passou
+npm test: passou
+npm run build: passou
+resultado do job: success
+```
+
+Evidência pública: [execução 30948719261](https://github.com/ViniciusRyannS/gym-ai-discovery-copilot/actions/runs/30948719261).
+
+O lint global não foi incluído artificialmente no gate: sua dívida permanece
+registrada e será tratada em escopo próprio.
+
 ## Execução de 2026-07-31 — DEMO-004
 
 ```text

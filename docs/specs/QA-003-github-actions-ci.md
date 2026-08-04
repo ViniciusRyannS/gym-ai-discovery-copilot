@@ -46,16 +46,16 @@ README only after the workflow exists; confirm its status after the first run.
 
 ## Acceptance criteria
 
-- [ ] workflow syntax is valid YAML;
-- [ ] workflow runs on push to `main`;
-- [ ] workflow runs on pull requests;
-- [ ] workflow supports manual dispatch;
-- [ ] Node.js 22 and npm cache are configured;
-- [ ] `npm ci`, typecheck, tests and build are blocking steps;
-- [ ] no secret or connected environment variable is required;
-- [ ] README contains a CI badge;
-- [ ] first GitHub Actions run completes successfully;
-- [ ] local quality gates remain green.
+- [x] workflow syntax is valid YAML;
+- [x] workflow runs on push to `main`;
+- [x] workflow runs on pull requests;
+- [x] workflow supports manual dispatch;
+- [x] Node.js 22 and npm cache are configured;
+- [x] `npm ci`, typecheck, tests and build are blocking steps;
+- [x] no secret or connected environment variable is required;
+- [x] README contains a CI badge;
+- [x] first GitHub Actions run completes successfully;
+- [x] local quality gates remain green.
 
 ## Tests
 
