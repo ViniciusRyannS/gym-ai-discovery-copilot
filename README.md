@@ -80,8 +80,8 @@ Este repositório está em estabilização pós-entrega acadêmica.
 - não há suíte end-to-end;
 - o fluxo de IA remoto ainda precisa de guardrails para mensagens vagas ou sem
   significado;
-- o pipeline atual usa uma chamada estruturada; não deve ser apresentado como
-  cinco agentes independentes já validados.
+- o fluxo remoto atual usa uma chamada estruturada ao modelo; uma arquitetura
+  com agentes independentes permanece apenas como possibilidade futura.
 
 ## Execução local
 

@@ -51,7 +51,7 @@ concluído com evidência real; limitações externas devem permanecer explícit
 - [ ] Evitar persistência parcial quando a IA falhar.
 - [ ] Tratar todos os erros de banco relevantes.
 - [ ] Adicionar limites de tamanho aos inputs.
-- [ ] Alinhar a alegação “multi-agente” ao código real.
+- [x] Alinhar a alegação “multi-agente” ao código real.
 - [x] Criar testes unitários dos guardrails de entrada.
 - [ ] Criar testes de integração do orquestrador remoto.
 

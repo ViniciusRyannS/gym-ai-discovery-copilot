@@ -243,6 +243,14 @@ Até 31 de julho de 2026, existe evidência registrada de:
 O projeto pode ser chamado de **MVP funcional demonstrável e estabilizado para
 portfólio**. Não deve ser chamado de sistema pronto para produção.
 
+### Narrativa técnica correta
+
+A arquitetura atual comprovada é baseada em TanStack Start, React e TypeScript.
+A demo pública e o modo local são determinísticos. No ambiente conectado, a
+orquestração validada usa uma chamada estruturada ao modelo por meio do Lovable
+AI Gateway; uma arquitetura com agentes independentes deve ser apresentada
+somente como roadmap, não como funcionalidade concluída.
+
 ## 11. Limitações e riscos conhecidos
 
 - não há suíte E2E permanente no repositório;

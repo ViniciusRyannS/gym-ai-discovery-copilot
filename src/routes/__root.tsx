@@ -85,14 +85,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "description",
         content:
-          "Motor conversacional multi-agente que conduz descobertas técnico-comerciais em 10 categorias e entrega Entendimento Executivo + artefatos prontos.",
+          "Copiloto de discovery técnico-comercial que estrutura briefings em 10 categorias e produz Entendimento Executivo e artefatos para revisão humana.",
       },
       { name: "author", content: "Gym.AI" },
       { property: "og:title", content: "Gym.AI — Discovery Copiloto para Pré-Vendas" },
       {
         property: "og:description",
         content:
-          "Motor conversacional multi-agente que conduz descobertas técnico-comerciais em 10 categorias e entrega Entendimento Executivo + artefatos prontos.",
+          "Copiloto de discovery técnico-comercial que estrutura briefings em 10 categorias e produz Entendimento Executivo e artefatos para revisão humana.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -100,7 +100,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "twitter:description",
         content:
-          "Motor conversacional multi-agente que conduz descobertas técnico-comerciais em 10 categorias e entrega Entendimento Executivo + artefatos prontos.",
+          "Copiloto de discovery técnico-comercial que estrutura briefings em 10 categorias e produz Entendimento Executivo e artefatos para revisão humana.",
       },
       {
         property: "og:image",

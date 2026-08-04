@@ -164,8 +164,8 @@ validações pendentes descritas abaixo.
 - o lint global possui dívida técnica preexistente;
 - CI ainda não foi configurada;
 - avisos de APIs depreciadas do TanStack Start permanecem no build;
-- o pipeline remoto é uma chamada estruturada e não deve ser apresentado como
-  cinco agentes independentes já validados.
+- o fluxo remoto atual usa uma chamada estruturada ao modelo; orquestração com
+  agentes independentes ainda seria uma evolução arquitetural.
 
 ### Funcionalidades de produto
 

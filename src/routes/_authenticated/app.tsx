@@ -125,8 +125,8 @@ function Home() {
           Qual serviço você vai <em className="text-primary">descobrir</em> hoje?
         </motion.h1>
         <p className="mt-4 max-w-xl text-sm leading-relaxed text-muted-foreground">
-          O motor multi-agente conduz seu pré-vendas em 10 categorias — do contexto de negócio aos
-          riscos — e devolve entendimento executivo + artefatos prontos.
+          O copiloto conduz o discovery em 10 categorias — do contexto de negócio aos riscos — e
+          organiza Entendimento Executivo e artefatos para revisão profissional.
         </p>
 
         {isDemo && (
