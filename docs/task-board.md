@@ -34,3 +34,4 @@ Nenhuma tarefa iniciada. A próxima ação deve ser escolhida sem misturar escop
 | PORT-001  | Publicar demonstração independente           | URL Cloudflare e smoke test público       |
 | DEMO-004  | Adicionar conversa local completa de exemplo | 25 testes, build e deploy validados       |
 | DOC-004   | Criar documentos de handoff para IA e mentor | Dois guias canônicos em Markdown          |
+| PORT-007  | Corrigir nome genérico do pacote             | npm ci, 25 testes e build aprovados       |

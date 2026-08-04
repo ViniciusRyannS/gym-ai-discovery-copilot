@@ -24,7 +24,7 @@ concluído com evidência real; limitações externas devem permanecer explícit
 - [x] Adicionar script de typecheck.
 - [x] Validar build de produção.
 - [ ] Corrigir o lint global ou definir baseline explícito.
-- [ ] Atualizar o nome genérico do pacote.
+- [x] Atualizar o nome genérico do pacote.
 - [ ] Adicionar CI para typecheck, testes e build.
 
 ## 3. Autenticação e demonstração
