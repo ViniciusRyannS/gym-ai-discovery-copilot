@@ -1,5 +1,7 @@
 # Gym.AI — Discovery Copilot
 
+[![CI](https://github.com/ViniciusRyannS/gym-ai-discovery-copilot/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/ViniciusRyannS/gym-ai-discovery-copilot/actions/workflows/ci.yml)
+
 Copiloto de discovery técnico-comercial para pré-vendas. O Gym.AI ajuda a
 transformar briefings incompletos em uma descoberta estruturada por dez
 categorias, com visualização de cobertura, Entendimento Executivo e artefatos
