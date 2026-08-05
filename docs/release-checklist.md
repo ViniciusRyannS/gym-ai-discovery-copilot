@@ -10,9 +10,10 @@ concluído com evidência real; limitações externas devem permanecer explícit
 - [x] Inicializar repositório Git próprio.
 - [x] Publicar histórico inicial em repositório privado.
 - [x] Criar README de execução e limitações.
-- [ ] Revisar README final para abertura pública.
+- [x] Revisar README final para abertura pública.
 - [ ] Definir licença com os autores ou manter todos os direitos reservados.
-- [ ] Adicionar screenshots reais e GIF/vídeo curto.
+- [x] Adicionar screenshots reais.
+- [ ] Adicionar GIF/vídeo curto (opcional).
 - [ ] Preparar texto final de apresentação e LinkedIn.
 
 ## 2. Execução e dependências

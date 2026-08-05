@@ -23,6 +23,24 @@ jornada completa:
 4. Entendimento Executivo;
 5. previews de PRD, ADR, Spec e User Stories.
 
+## Jornada em imagens
+
+### 1. Do briefing incompleto à descoberta estruturada
+
+![Tela inicial da demonstração guiada do Gym.AI](docs/assets/screenshots/01-demo-inicial.png)
+
+### 2. Perguntas adaptativas e fatos rastreáveis
+
+![Conversa guiada com pergunta contextualizada e insight capturado](docs/assets/screenshots/02-conversa-guiada.png)
+
+### 3. Entendimento Executivo para alinhar a decisão
+
+![Entendimento Executivo com síntese, riscos e próximos passos](docs/assets/screenshots/03-entendimento-executivo.png)
+
+### 4. Artefatos acionáveis e revisáveis
+
+![Previews de PRD, ADR, Spec e User Stories](docs/assets/screenshots/04-artefatos.png)
+
 O projeto também possui um modo local para apresentação. Na tela `/auth`,
 selecione **Demonstração** e use:
 
@@ -50,7 +68,9 @@ Nenhuma informação do modo local é enviada ao Supabase ou a serviços de IA.
 
 ## Estado atual
 
-Este repositório está em estabilização pós-entrega acadêmica.
+Este repositório apresenta um MVP funcional demonstrável, estabilizado para
+portfólio. O ambiente conectado ainda não deve ser tratado como produto pronto
+para produção.
 
 ### Disponível no modo local
 

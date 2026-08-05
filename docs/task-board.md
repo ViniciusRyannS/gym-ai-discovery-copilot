@@ -6,11 +6,10 @@ Nenhuma tarefa iniciada. A próxima ação deve ser escolhida sem misturar escop
 
 ## Próximas
 
-| ID      | Tarefa                                     | Prioridade |
-| ------- | ------------------------------------------ | ---------- |
-| SEC-002 | Fortalecer RLS e constraints               | P0         |
-| AI-002  | Fallback e atomicidade do fluxo remoto     | P0         |
-| DOC-002 | Adicionar screenshots e mídia de portfólio | P1         |
+| ID      | Tarefa                                 | Prioridade |
+| ------- | -------------------------------------- | ---------- |
+| SEC-002 | Fortalecer RLS e constraints           | P0         |
+| AI-002  | Fallback e atomicidade do fluxo remoto | P0         |
 
 ## Concluídas
 
@@ -38,3 +37,4 @@ Nenhuma tarefa iniciada. A próxima ação deve ser escolhida sem misturar escop
 | QA-003    | Adicionar GitHub Actions CI                  | Workflow verde no GitHub Actions          |
 | QA-004    | Resolver baseline global de lint             | 0 erros e 0 avisos                        |
 | PORT-008  | Auditar e finalizar o repositório            | CI verde e smoke público aprovado         |
+| DOC-002   | Adicionar screenshots ao portfólio           | Quatro etapas reais no README             |
