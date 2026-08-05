@@ -18,7 +18,7 @@ reais fornecidas pelo responsável pelo portfólio.
 - [x] nenhuma imagem expõe credencial ou dado pessoal;
 - [x] README exibe a jornada em ordem coerente;
 - [x] links locais das imagens foram validados;
-- [ ] formatação e CI permanecem verdes.
+- [x] formatação e CI permanecem verdes.
 
 ## Rollback
 

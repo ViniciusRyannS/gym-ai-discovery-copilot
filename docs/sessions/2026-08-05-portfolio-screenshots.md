@@ -9,7 +9,7 @@ Entendimento Executivo e artefatos.
 
 ## Status
 
-Validação local concluída; publicação pendente.
+Concluída.
 
 ## Resultado local
 
@@ -18,3 +18,10 @@ Validação local concluída; publicação pendente.
 - nenhuma credencial ou dado pessoal visível;
 - README organizado em quatro etapas narrativas;
 - formatação e links locais aprovados.
+
+## Evidências publicadas
+
+- commit: `3e2d21d` (`docs: add portfolio screenshots`);
+- quatro imagens públicas retornaram HTTP 200 e `image/png`;
+- job `Install, lint, typecheck, test and build`: `success`;
+- [GitHub Actions 31042124926](https://github.com/ViniciusRyannS/gym-ai-discovery-copilot/actions/runs/31042124926).
