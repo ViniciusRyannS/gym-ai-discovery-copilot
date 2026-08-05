@@ -119,8 +119,8 @@ npm test
 npm run build
 ```
 
-O lint global ainda possui dívida técnica preexistente de formatação. Para
-mudanças novas, execute ESLint nos arquivos alterados.
+O lint global passa sem erros e mantém apenas dois avisos não bloqueantes de
+Fast Refresh em componentes compartilhados de UI.
 
 ## Variáveis de ambiente
 
@@ -152,6 +152,10 @@ Supabase, Lovable AI Gateway, Gemini, Zod e TanStack Query.
 
 ## Autoria e origem
 
+O projeto foi desenvolvido no contexto do Programa Pulse Mais, a partir de um
+desafio proposto pela Clear IT. Essa origem não representa endosso institucional
+da versão posterior mantida neste repositório.
+
 O MVP acadêmico foi desenvolvido pelo grupo Gym.IA:
 
 - Vinicius Ryann;
@@ -170,6 +174,7 @@ Detalhes adicionais estão em [docs/project-origin.md](docs/project-origin.md).
 
 ## Documentação
 
+- [Mapa da documentação](docs/README.md)
 - [Manual do sistema](docs/manual-do-sistema.md)
 - [Contexto completo para ChatGPT e outras IAs](docs/contexto-completo-para-ia.md)
 - [Guia para mentores e pessoas não técnicas](docs/guia-do-projeto-para-mentores.md)

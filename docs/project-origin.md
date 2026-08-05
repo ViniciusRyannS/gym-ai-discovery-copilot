@@ -7,6 +7,11 @@ pré-vendas técnico-comerciais: briefings incompletos, descobertas
 inconsistentes, riscos encontrados tarde e retrabalho na preparação de
 propostas.
 
+O trabalho foi desenvolvido no contexto do Programa Pulse Mais, a partir de um
+desafio proposto pela Clear IT. Essa descrição registra a origem do projeto e
+não implica parceria comercial, patrocínio ou endosso institucional da versão
+posterior mantida neste repositório.
+
 A base conceitual veio das especificações elaboradas pelo grupo. O MVP usado na
 entrega acadêmica foi reconstruído no Lovable com TanStack Start, Supabase e
 Lovable AI Gateway.
@@ -51,4 +56,3 @@ automaticamente com o workspace Lovable original.
 Nenhuma licença de código aberto foi definida nesta etapa. Uma futura
 publicação sob licença permissiva deve ser decidida considerando a autoria
 coletiva e eventuais regras da iniciativa acadêmica.
-

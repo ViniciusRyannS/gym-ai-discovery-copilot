@@ -151,26 +151,97 @@
 }
 
 @keyframes shimmer-slide {
-  from { background-position: 200% 0; }
-  to   { background-position: -200% 0; }
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
 }
 
 @layer base {
-  .markdown h1 { font-family: var(--font-display); font-size: 1.5rem; line-height: 1.15; letter-spacing: -0.02em; margin: 1rem 0 .5rem; color: var(--color-foreground); }
-  .markdown h2 { font-family: var(--font-display); font-size: 1.25rem; line-height: 1.2; letter-spacing: -0.02em; margin: 1rem 0 .5rem; color: var(--color-foreground); }
-  .markdown h3 { font-weight: 600; margin: .75rem 0 .25rem; color: var(--color-foreground); }
-  .markdown p { margin: .5rem 0; }
-  .markdown a { color: var(--color-primary); text-decoration: underline; text-underline-offset: 2px; }
-  .markdown strong { color: var(--color-foreground); font-weight: 600; }
-  .markdown em { font-style: italic; color: color-mix(in oklab, var(--color-foreground) 85%, transparent); }
-  .markdown ul, .markdown ol { margin: .5rem 0; padding-left: 1.25rem; }
-  .markdown ul { list-style: disc; }
-  .markdown ol { list-style: decimal; }
-  .markdown li { margin: .15rem 0; }
-  .markdown code { font-family: var(--font-mono); background: var(--color-secondary); padding: .1em .35em; border-radius: .25em; font-size: .85em; }
-  .markdown pre { background: color-mix(in oklab, var(--color-secondary) 70%, transparent); border: 1px solid var(--color-hairline); border-radius: .75rem; padding: .75rem 1rem; overflow-x: auto; }
-  .markdown pre code { background: transparent; padding: 0; }
-  .markdown blockquote { border-left: 2px solid var(--color-primary); padding-left: .75rem; color: var(--color-muted-foreground); margin: .5rem 0; }
-  .markdown table { border-collapse: collapse; margin: .5rem 0; }
-  .markdown th, .markdown td { border: 1px solid var(--color-hairline); padding: .35rem .6rem; }
+  .markdown h1 {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin: 1rem 0 0.5rem;
+    color: var(--color-foreground);
+  }
+  .markdown h2 {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin: 1rem 0 0.5rem;
+    color: var(--color-foreground);
+  }
+  .markdown h3 {
+    font-weight: 600;
+    margin: 0.75rem 0 0.25rem;
+    color: var(--color-foreground);
+  }
+  .markdown p {
+    margin: 0.5rem 0;
+  }
+  .markdown a {
+    color: var(--color-primary);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .markdown strong {
+    color: var(--color-foreground);
+    font-weight: 600;
+  }
+  .markdown em {
+    font-style: italic;
+    color: color-mix(in oklab, var(--color-foreground) 85%, transparent);
+  }
+  .markdown ul,
+  .markdown ol {
+    margin: 0.5rem 0;
+    padding-left: 1.25rem;
+  }
+  .markdown ul {
+    list-style: disc;
+  }
+  .markdown ol {
+    list-style: decimal;
+  }
+  .markdown li {
+    margin: 0.15rem 0;
+  }
+  .markdown code {
+    font-family: var(--font-mono);
+    background: var(--color-secondary);
+    padding: 0.1em 0.35em;
+    border-radius: 0.25em;
+    font-size: 0.85em;
+  }
+  .markdown pre {
+    background: color-mix(in oklab, var(--color-secondary) 70%, transparent);
+    border: 1px solid var(--color-hairline);
+    border-radius: 0.75rem;
+    padding: 0.75rem 1rem;
+    overflow-x: auto;
+  }
+  .markdown pre code {
+    background: transparent;
+    padding: 0;
+  }
+  .markdown blockquote {
+    border-left: 2px solid var(--color-primary);
+    padding-left: 0.75rem;
+    color: var(--color-muted-foreground);
+    margin: 0.5rem 0;
+  }
+  .markdown table {
+    border-collapse: collapse;
+    margin: 0.5rem 0;
+  }
+  .markdown th,
+  .markdown td {
+    border: 1px solid var(--color-hairline);
+    padding: 0.35rem 0.6rem;
+  }
 }

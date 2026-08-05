@@ -1,6 +1,14 @@
 // Extrai o texto natural quando o modelo devolve JSON dentro do `reply`.
 // Cobre variações comuns: pergunta / reply / resposta / message / answer / content / text.
-const TEXT_KEYS = ["pergunta", "reply", "resposta", "message", "answer", "content", "text"] as const;
+const TEXT_KEYS = [
+  "pergunta",
+  "reply",
+  "resposta",
+  "message",
+  "answer",
+  "content",
+  "text",
+] as const;
 
 function pickText(obj: unknown): string | null {
   if (!obj || typeof obj !== "object") return null;

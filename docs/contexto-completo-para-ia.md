@@ -227,13 +227,14 @@ docs/sessions/                 evidências e registros de execução
 
 ## 10. Estado validado
 
-Até 31 de julho de 2026, existe evidência registrada de:
+Até 4 de agosto de 2026, existe evidência registrada de:
 
 - instalação reproduzível com npm;
 - typecheck aprovado;
 - 25 testes automatizados aprovados;
 - build de produção aprovado;
-- lint focado aprovado nas entregas recentes;
+- lint global aprovado sem erros ou avisos;
+- CI pública aprovada no GitHub Actions;
 - rota pública HTTPS com deep link e refresh;
 - teste da demo em desktop e mobile;
 - ausência de chamadas ao Supabase e gateway no fluxo `/demo`;
@@ -254,9 +255,6 @@ somente como roadmap, não como funcionalidade concluída.
 ## 11. Limitações e riscos conhecidos
 
 - não há suíte E2E permanente no repositório;
-- CI ainda não está configurada;
-- existe dívida de lint global;
-- o nome do pacote ainda é genérico;
 - faltam screenshots, GIF e release formal de portfólio;
 - o ambiente conectado precisa de validação real de login e IA;
 - fallback e atomicidade do gateway remoto estão pendentes;
@@ -268,12 +266,10 @@ somente como roadmap, não como funcionalidade concluída.
 ## 12. Próximas prioridades recomendadas
 
 1. adicionar screenshots e vídeo/GIF ao repositório;
-2. configurar CI para install, typecheck, testes e build;
-3. corrigir o nome do pacote;
-4. criar uma suíte E2E permanente;
-5. revisar README, metadados sociais e GitHub About;
-6. criar a release `v0.1.0-portfolio`;
-7. somente depois avançar na resiliência da IA e segurança conectada.
+2. criar uma suíte E2E permanente;
+3. revisar metadados sociais e GitHub About;
+4. criar a release `v0.1.0-portfolio`;
+5. somente depois avançar na resiliência da IA e segurança conectada.
 
 ## 13. Links
 

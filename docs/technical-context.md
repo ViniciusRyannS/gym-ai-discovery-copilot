@@ -32,4 +32,5 @@
 - confirmação automática de e-mail está desabilitada;
 - Google OAuth local ainda não foi validado;
 - o plugin MCP 0.23.x exige um contorno para caminhos do Windows;
-- não há suíte de testes automatizados.
+- existem testes unitários em Node, mas não uma suíte E2E permanente;
+- a CI do GitHub valida instalação, tipos, testes e build em Node.js 22.

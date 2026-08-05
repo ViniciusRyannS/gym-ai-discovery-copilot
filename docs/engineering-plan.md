@@ -5,28 +5,30 @@
 Tornar o Gym.AI reproduzível, seguro, testado, documentado e adequado para
 demonstração e portfólio, sem reconstruir o produto.
 
-## Ordem de execução
+## Entregas concluídas
 
-1. Proteger segredos e documentar o ambiente;
-2. Estabilizar autenticação;
-3. Criar os primeiros testes e quality gates;
-4. Tratar erros das funções e do gateway de IA;
-5. Fortalecer schema e RLS;
-6. Validar UX, acessibilidade, MCP e release.
+1. segredos protegidos e ambiente documentado;
+2. autenticação demonstrativa local;
+3. rota pública `/demo` publicada em HTTPS;
+4. testes unitários, typecheck, lint e build;
+5. CI no GitHub Actions;
+6. manual, handoff técnico e guia para mentores.
 
 ## Regra de pronto
 
 Uma tarefa só pode ser marcada como concluída quando sua especificação, mudança,
 testes executados e resultados estiverem registrados.
 
-## Tarefa ativa
+## Prioridades atuais
 
-`REL-001` — preparar publicação independente para acesso por URL.
+1. concluir materiais visuais e publicação de portfólio;
+2. fortalecer RLS e constraints do ambiente conectado;
+3. implementar fallback e atomicidade do gateway remoto;
+4. adicionar testes E2E das jornadas críticas;
+5. validar acessibilidade, MCP e integrações remotas.
 
-AI-001 concluída em
-[sessions/2026-07-31-discovery-input-guardrails.md](sessions/2026-07-31-discovery-input-guardrails.md).
-
-AI-002 permanece planejada para o ambiente conectado, mas foi reposicionada
-depois da conclusão da jornada local de portfólio.
+O modo demonstrativo publicado é o caminho recomendado para avaliação. O
+ambiente conectado permanece uma arquitetura preservada, com validações
+pendentes antes de qualquer alegação de produção.
 
 Checklist consolidado: [release-checklist.md](release-checklist.md).

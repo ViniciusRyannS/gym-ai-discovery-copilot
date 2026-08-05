@@ -54,6 +54,10 @@ não substituem revisão técnica, comercial, jurídica ou de segurança.
 A rota `/demo` apresenta uma narrativa guiada sem login: briefing incompleto,
 perguntas, evolução da cobertura, Entendimento Executivo e artefatos.
 
+Ela está publicada em:
+
+<https://viniciusryanns-gym-ai-discovery-copilot.east-gigantspinosaurus.workers.dev/demo>
+
 ### Login e cadastro demonstrativos
 
 Na opção **Demonstração**, o usuário pode entrar com uma conta fictícia pronta
@@ -137,11 +141,6 @@ validações pendentes descritas abaixo.
 
 ## 3. O que ainda não está funcionando ou validado
 
-### Acesso público
-
-- ainda não existe uma URL independente publicada para recrutadores;
-- atualmente o projeto precisa ser executado localmente.
-
 ### Ambiente conectado
 
 - login real confirmado não foi validado ponta a ponta nesta cópia;
@@ -161,8 +160,10 @@ validações pendentes descritas abaixo.
 ### Qualidade e engenharia
 
 - não existe suíte automatizada end-to-end;
-- o lint global possui dívida técnica preexistente;
-- CI ainda não foi configurada;
+- o lint possui dois avisos não bloqueantes de Fast Refresh nos componentes de
+  UI compartilhados;
+- a CI valida instalação, tipos, testes e build, mas ainda não executa testes
+  de navegador;
 - avisos de APIs depreciadas do TanStack Start permanecem no build;
 - o fluxo remoto atual usa uma chamada estruturada ao modelo; orquestração com
   agentes independentes ainda seria uma evolução arquitetural.
@@ -181,11 +182,9 @@ validações pendentes descritas abaixo.
 
 ### Prioridade imediata — apresentação
 
-1. Publicar o modo local em uma URL independente.
-2. Executar teste visual em desktop e mobile.
-3. Adicionar screenshots e vídeo curto ao repositório.
-4. Configurar CI para typecheck, testes e build.
-5. Revisar README, autoria e segredos antes de tornar o repositório público.
+1. Adicionar screenshots e um vídeo curto ao repositório e ao LinkedIn.
+2. Preparar o texto e o roteiro final da publicação.
+3. Definir licença considerando a autoria coletiva.
 
 ### Estabilização técnica
 

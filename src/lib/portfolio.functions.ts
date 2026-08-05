@@ -39,7 +39,9 @@ export const upsertPortfolioItem = createServerFn({ method: "POST" })
 
 export const togglePortfolioItem = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
-  .inputValidator((input: unknown) => z.object({ id: z.string().uuid(), is_active: z.boolean() }).parse(input))
+  .inputValidator((input: unknown) =>
+    z.object({ id: z.string().uuid(), is_active: z.boolean() }).parse(input),
+  )
   .handler(async ({ data, context }) => {
     const { error } = await context.supabase
       .from("portfolio_items")

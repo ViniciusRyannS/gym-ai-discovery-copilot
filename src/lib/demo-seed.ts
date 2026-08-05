@@ -28,7 +28,10 @@ export type SeedJourney = {
   artifacts: SeedArtifact[];
 };
 
-const CATS = Object.fromEntries(DISCOVERY_CATEGORIES.map((c) => [c.key, c.key])) as Record<string, string>;
+const CATS = Object.fromEntries(DISCOVERY_CATEGORIES.map((c) => [c.key, c.key])) as Record<
+  string,
+  string
+>;
 
 function coverage(partial: Record<string, number>): Record<string, number> {
   return { ...EMPTY_COVERAGE, ...partial };
@@ -44,47 +47,173 @@ const J1: SeedJourney = {
     "Rede varejista com 180 lojas físicas quer migrar ERP legado (Oracle E-Business Suite on-prem) e portal e-commerce para AWS. Motivador: contrato de datacenter vence em 10 meses, custo subiu 40%. Sponsor é o CFO. TI enxuta (12 pessoas). Sem experiência prévia em cloud.",
   primary_category: CATS.contexto_negocio,
   coverage: coverage({
-    contexto_negocio: 0.95, ambiente_atual: 0.9, escopo_tecnico: 0.9,
-    operacao_sustentacao: 0.85, seguranca_conformidade: 0.8, volumetria_capacidade: 0.9,
-    criticidade: 0.9, governanca: 0.75, premissas_exclusoes: 0.8, riscos_validacoes: 0.75,
+    contexto_negocio: 0.95,
+    ambiente_atual: 0.9,
+    escopo_tecnico: 0.9,
+    operacao_sustentacao: 0.85,
+    seguranca_conformidade: 0.8,
+    volumetria_capacidade: 0.9,
+    criticidade: 0.9,
+    governanca: 0.75,
+    premissas_exclusoes: 0.8,
+    riscos_validacoes: 0.75,
   }),
   messages: [
-    { role: "user", content: "Vamos começar. Preciso mapear escopo e riscos antes de mandar proposta em 3 semanas." },
-    { role: "assistant", content: "Ótimo. Começando pelo **contexto de negócio**: qual é o driver principal — só o custo do DC ou tem outro objetivo estratégico (velocidade de release, expansão de canais, resiliência)?\n\nE quem, além do CFO, precisa aprovar essa migração?" },
-    { role: "user", content: "Driver primário é custo (contrato do DC vence, 40% de reajuste). Secundário é resiliência — tiveram 3 quedas críticas em 12 meses. Aprovação: CFO patrocina, CIO tecniciza, e o Comitê Executivo (5 pessoas) precisa dar aval na fase de contratação." },
-    { role: "assistant", content: "Perfeito. Sobre o **ambiente atual**: além do Oracle EBS, quais são as integrações críticas hoje? Estou pensando em SEFAZ (NFe), meios de pagamento, WMS, PDV das lojas. E o portal e-commerce roda em qual stack?" },
-    { role: "user", content: "Integrações: NFe (Focus NFe SaaS), Cielo/Rede/Getnet, WMS Manhattan on-prem, ~180 PDVs Linux com sync noturno via VPN MPLS. Portal é Magento 2 com MySQL 8, cache Redis, imagens em NFS local." },
-    { role: "assistant", content: "Anotado. Sobre **volumetria**: qual o pico de pedidos/hora no e-commerce (Black Friday, por exemplo) e o volume médio de transações do ERP por dia? Isso muda a estratégia entre lift-and-shift e refatoração." },
-    { role: "user", content: "Pico Black Friday 2024: 4.200 pedidos/hora, ~11k sessões concorrentes. Dia normal: 800 ped/h. ERP: ~40k transações/dia, batch noturno de 6h para consolidação fiscal." },
-    { role: "assistant", content: "Bom sinal — volumetria não é extrema. Sobre **segurança e conformidade**: dados de cartão passam pelo ambiente (PCI-DSS)? LGPD tem DPO nomeado? Alguma auditoria externa recente?" },
-    { role: "user", content: "PCI-DSS SAQ-A (tokenização no adquirente, não armazenamos PAN). LGPD: DPO nomeado, ROPA feito ano passado, sem incidentes reportados. Auditoria interna anual, sem externa formal." },
-    { role: "assistant", content: "Ótimo, isso simplifica muito. Sobre **operação**: qual o SLA hoje do e-commerce e do ERP? Time de sustentação atual — próprio ou terceirizado? Janela de manutenção disponível?" },
-    { role: "user", content: "SLA e-commerce: 99.5% (medido, entrega 99.1%). ERP: horário comercial + batch, sem SLA formal. Sustentação: 4 pessoas próprias + AMS Oracle terceirizado. Janela: dom 2h-6h para o ERP; e-commerce sem janela." },
-    { role: "assistant", content: "Ponto crítico do e-commerce zero-downtime. Sobre **riscos**: qual é o maior medo do CIO nessa migração? E o CFO tem um teto de investimento definido para o programa?" },
-    { role: "user", content: "CIO teme paralisar operação de lojas por integração PDV-ERP quebrada. CFO: teto de R$ 4,2 milhões CAPEX ano 1 + até 30% economia OPEX ano 2 (compromisso público)." },
-    { role: "assistant", content: "Cenário está bem claro. Recomendo agora **gerar o Entendimento Executivo** — já temos base para diagnóstico, riscos e próximos passos. Você quer que eu monte também o PRD e o ADR de estratégia de migração?" },
-    { role: "user", content: "Sim, gera tudo: entendimento, PRD, ADR e as user stories para escopo do MVP." },
+    {
+      role: "user",
+      content:
+        "Vamos começar. Preciso mapear escopo e riscos antes de mandar proposta em 3 semanas.",
+    },
+    {
+      role: "assistant",
+      content:
+        "Ótimo. Começando pelo **contexto de negócio**: qual é o driver principal — só o custo do DC ou tem outro objetivo estratégico (velocidade de release, expansão de canais, resiliência)?\n\nE quem, além do CFO, precisa aprovar essa migração?",
+    },
+    {
+      role: "user",
+      content:
+        "Driver primário é custo (contrato do DC vence, 40% de reajuste). Secundário é resiliência — tiveram 3 quedas críticas em 12 meses. Aprovação: CFO patrocina, CIO tecniciza, e o Comitê Executivo (5 pessoas) precisa dar aval na fase de contratação.",
+    },
+    {
+      role: "assistant",
+      content:
+        "Perfeito. Sobre o **ambiente atual**: além do Oracle EBS, quais são as integrações críticas hoje? Estou pensando em SEFAZ (NFe), meios de pagamento, WMS, PDV das lojas. E o portal e-commerce roda em qual stack?",
+    },
+    {
+      role: "user",
+      content:
+        "Integrações: NFe (Focus NFe SaaS), Cielo/Rede/Getnet, WMS Manhattan on-prem, ~180 PDVs Linux com sync noturno via VPN MPLS. Portal é Magento 2 com MySQL 8, cache Redis, imagens em NFS local.",
+    },
+    {
+      role: "assistant",
+      content:
+        "Anotado. Sobre **volumetria**: qual o pico de pedidos/hora no e-commerce (Black Friday, por exemplo) e o volume médio de transações do ERP por dia? Isso muda a estratégia entre lift-and-shift e refatoração.",
+    },
+    {
+      role: "user",
+      content:
+        "Pico Black Friday 2024: 4.200 pedidos/hora, ~11k sessões concorrentes. Dia normal: 800 ped/h. ERP: ~40k transações/dia, batch noturno de 6h para consolidação fiscal.",
+    },
+    {
+      role: "assistant",
+      content:
+        "Bom sinal — volumetria não é extrema. Sobre **segurança e conformidade**: dados de cartão passam pelo ambiente (PCI-DSS)? LGPD tem DPO nomeado? Alguma auditoria externa recente?",
+    },
+    {
+      role: "user",
+      content:
+        "PCI-DSS SAQ-A (tokenização no adquirente, não armazenamos PAN). LGPD: DPO nomeado, ROPA feito ano passado, sem incidentes reportados. Auditoria interna anual, sem externa formal.",
+    },
+    {
+      role: "assistant",
+      content:
+        "Ótimo, isso simplifica muito. Sobre **operação**: qual o SLA hoje do e-commerce e do ERP? Time de sustentação atual — próprio ou terceirizado? Janela de manutenção disponível?",
+    },
+    {
+      role: "user",
+      content:
+        "SLA e-commerce: 99.5% (medido, entrega 99.1%). ERP: horário comercial + batch, sem SLA formal. Sustentação: 4 pessoas próprias + AMS Oracle terceirizado. Janela: dom 2h-6h para o ERP; e-commerce sem janela.",
+    },
+    {
+      role: "assistant",
+      content:
+        "Ponto crítico do e-commerce zero-downtime. Sobre **riscos**: qual é o maior medo do CIO nessa migração? E o CFO tem um teto de investimento definido para o programa?",
+    },
+    {
+      role: "user",
+      content:
+        "CIO teme paralisar operação de lojas por integração PDV-ERP quebrada. CFO: teto de R$ 4,2 milhões CAPEX ano 1 + até 30% economia OPEX ano 2 (compromisso público).",
+    },
+    {
+      role: "assistant",
+      content:
+        "Cenário está bem claro. Recomendo agora **gerar o Entendimento Executivo** — já temos base para diagnóstico, riscos e próximos passos. Você quer que eu monte também o PRD e o ADR de estratégia de migração?",
+    },
+    {
+      role: "user",
+      content: "Sim, gera tudo: entendimento, PRD, ADR e as user stories para escopo do MVP.",
+    },
   ],
   facts: [
-    { key: "driver_primario", value: "Fim do contrato DC + reajuste 40%", category: CATS.contexto_negocio },
-    { key: "driver_secundario", value: "Resiliência (3 quedas críticas em 12m)", category: CATS.contexto_negocio },
-    { key: "sponsor", value: "CFO patrocina; CIO tecniciza; Comitê Executivo aprova", category: CATS.governanca },
+    {
+      key: "driver_primario",
+      value: "Fim do contrato DC + reajuste 40%",
+      category: CATS.contexto_negocio,
+    },
+    {
+      key: "driver_secundario",
+      value: "Resiliência (3 quedas críticas em 12m)",
+      category: CATS.contexto_negocio,
+    },
+    {
+      key: "sponsor",
+      value: "CFO patrocina; CIO tecniciza; Comitê Executivo aprova",
+      category: CATS.governanca,
+    },
     { key: "prazo", value: "10 meses até vencimento do DC", category: CATS.contexto_negocio },
     { key: "erp", value: "Oracle E-Business Suite on-prem", category: CATS.ambiente_atual },
-    { key: "ecommerce_stack", value: "Magento 2 + MySQL 8 + Redis + NFS", category: CATS.ambiente_atual },
-    { key: "integracoes", value: "Focus NFe, Cielo/Rede/Getnet, WMS Manhattan, 180 PDVs Linux via MPLS", category: CATS.ambiente_atual },
-    { key: "pico_ecommerce", value: "4.200 ped/h e 11k sessões concorrentes (Black Friday)", category: CATS.volumetria_capacidade },
-    { key: "volume_erp", value: "40k transações/dia, batch fiscal 6h", category: CATS.volumetria_capacidade },
-    { key: "pci", value: "SAQ-A, sem armazenar PAN (tokenização)", category: CATS.seguranca_conformidade },
-    { key: "lgpd", value: "DPO nomeado, ROPA feito, sem incidentes", category: CATS.seguranca_conformidade },
+    {
+      key: "ecommerce_stack",
+      value: "Magento 2 + MySQL 8 + Redis + NFS",
+      category: CATS.ambiente_atual,
+    },
+    {
+      key: "integracoes",
+      value: "Focus NFe, Cielo/Rede/Getnet, WMS Manhattan, 180 PDVs Linux via MPLS",
+      category: CATS.ambiente_atual,
+    },
+    {
+      key: "pico_ecommerce",
+      value: "4.200 ped/h e 11k sessões concorrentes (Black Friday)",
+      category: CATS.volumetria_capacidade,
+    },
+    {
+      key: "volume_erp",
+      value: "40k transações/dia, batch fiscal 6h",
+      category: CATS.volumetria_capacidade,
+    },
+    {
+      key: "pci",
+      value: "SAQ-A, sem armazenar PAN (tokenização)",
+      category: CATS.seguranca_conformidade,
+    },
+    {
+      key: "lgpd",
+      value: "DPO nomeado, ROPA feito, sem incidentes",
+      category: CATS.seguranca_conformidade,
+    },
     { key: "sla_ecommerce", value: "99.5% (entrega 99.1%)", category: CATS.operacao_sustentacao },
-    { key: "sustentacao", value: "4 internos + AMS Oracle terceirizado", category: CATS.operacao_sustentacao },
-    { key: "janela_manutencao", value: "Dom 2h-6h ERP; e-commerce zero-downtime", category: CATS.operacao_sustentacao },
-    { key: "criticidade_pdv", value: "Alta — quebra integração PDV-ERP paralisa lojas", category: CATS.criticidade },
+    {
+      key: "sustentacao",
+      value: "4 internos + AMS Oracle terceirizado",
+      category: CATS.operacao_sustentacao,
+    },
+    {
+      key: "janela_manutencao",
+      value: "Dom 2h-6h ERP; e-commerce zero-downtime",
+      category: CATS.operacao_sustentacao,
+    },
+    {
+      key: "criticidade_pdv",
+      value: "Alta — quebra integração PDV-ERP paralisa lojas",
+      category: CATS.criticidade,
+    },
     { key: "teto_capex", value: "R$ 4,2M ano 1", category: CATS.premissas_exclusoes },
-    { key: "meta_opex", value: "30% economia OPEX ano 2 (compromisso público)", category: CATS.premissas_exclusoes },
-    { key: "risco_principal", value: "Quebra de sync PDV durante cutover", category: CATS.riscos_validacoes },
-    { key: "estrategia_hipotese", value: "Lift-and-shift ERP + refactor seletivo do e-commerce", category: CATS.escopo_tecnico },
+    {
+      key: "meta_opex",
+      value: "30% economia OPEX ano 2 (compromisso público)",
+      category: CATS.premissas_exclusoes,
+    },
+    {
+      key: "risco_principal",
+      value: "Quebra de sync PDV durante cutover",
+      category: CATS.riscos_validacoes,
+    },
+    {
+      key: "estrategia_hipotese",
+      value: "Lift-and-shift ERP + refactor seletivo do e-commerce",
+      category: CATS.escopo_tecnico,
+    },
   ],
   understandings: [
     {
@@ -299,37 +428,132 @@ const J2: SeedJourney = {
     "Escritório de advocacia médio (140 advogados) quer chatbot que consulte base de 80k contratos e pareceres internos em PDF. Objetivo: reduzir tempo de pesquisa jurisprudencial. Preocupação forte com sigilo cliente/OAB.",
   primary_category: CATS.seguranca_conformidade,
   coverage: coverage({
-    contexto_negocio: 0.8, ambiente_atual: 0.5, escopo_tecnico: 0.6,
-    operacao_sustentacao: 0.3, seguranca_conformidade: 0.85, volumetria_capacidade: 0.4,
-    criticidade: 0.6, governanca: 0.7, premissas_exclusoes: 0.5, riscos_validacoes: 0.4,
+    contexto_negocio: 0.8,
+    ambiente_atual: 0.5,
+    escopo_tecnico: 0.6,
+    operacao_sustentacao: 0.3,
+    seguranca_conformidade: 0.85,
+    volumetria_capacidade: 0.4,
+    criticidade: 0.6,
+    governanca: 0.7,
+    premissas_exclusoes: 0.5,
+    riscos_validacoes: 0.4,
   }),
   messages: [
-    { role: "user", content: "Cliente quer RAG sobre 80k PDFs de contratos e pareceres. Prazo apertado, sigilo é tudo." },
-    { role: "assistant", content: "Entendido. Sobre **contexto de negócio**: qual métrica o sócio quer mover? Tempo médio de pesquisa por caso, produtividade por advogado, ou redução de retrabalho em contratos padrão?" },
-    { role: "user", content: "Tempo de pesquisa. Hoje um pleno leva 2-4h para achar precedente interno. Meta é cair para minutos com respostas rastreáveis." },
-    { role: "assistant", content: "Métrica clara — resposta com **citação obrigatória**. Sobre **segurança e conformidade**: existe classificação de sigilo por documento? Dados pessoais sensíveis (LGPD) exigem tratamento específico? Podem sair da infra do cliente?" },
-    { role: "user", content: "Classificação existe (público, confidencial, sigiloso). Sigilosos são ~15% da base. LGPD: dados de PF em contratos. NADA pode sair da infra do cliente — exigência do compliance." },
-    { role: "assistant", content: "Isso trava opções SaaS puras — precisamos rodar em VPC do cliente ou on-prem. Já tem cloud provider padrão? Azure/AWS/GCP? E qual o apetite para GPU on-prem vs. inferência em cloud dedicada?" },
-    { role: "user", content: "Azure é padrão (contrato enterprise). Não têm GPU. Aceitam inferência em Azure OpenAI se ficar em region BR e sob contrato existente." },
-    { role: "assistant", content: "Ótimo, isso viabiliza Azure OpenAI + AI Search em region brazilsouth. Sobre **volumetria**: 80k PDFs — qual o tamanho médio? Quantos advogados usariam simultaneamente no pico? Novos documentos entram diariamente ou em lotes?" },
-    { role: "user", content: "PDFs variam 2 a 300 páginas, média 40. Uso: 140 advogados, pico estimado 30 concorrentes. Novos: ~200 documentos/dia entram no DMS (Sharepoint)." },
-    { role: "assistant", content: "Sharepoint como fonte simplifica pipeline. Sobre **operação**: quem sustenta hoje as ferramentas jurídicas? Existe SLA formal ou é best-effort? E o time de TI tem experiência com IA?" },
-    { role: "user", content: "Sustentação: 1 pessoa de TI + fornecedor DMS. Zero experiência com IA. Sem SLA formal." },
-    { role: "assistant", content: "Aí temos um risco relevante — sustentabilidade pós-projeto exige runbook enxuto e treinamento. Antes de gerar o entendimento, preciso entender **riscos** que o comitê levantou. Já surgiu preocupação com alucinação, viés ou vazamento?" },
+    {
+      role: "user",
+      content:
+        "Cliente quer RAG sobre 80k PDFs de contratos e pareceres. Prazo apertado, sigilo é tudo.",
+    },
+    {
+      role: "assistant",
+      content:
+        "Entendido. Sobre **contexto de negócio**: qual métrica o sócio quer mover? Tempo médio de pesquisa por caso, produtividade por advogado, ou redução de retrabalho em contratos padrão?",
+    },
+    {
+      role: "user",
+      content:
+        "Tempo de pesquisa. Hoje um pleno leva 2-4h para achar precedente interno. Meta é cair para minutos com respostas rastreáveis.",
+    },
+    {
+      role: "assistant",
+      content:
+        "Métrica clara — resposta com **citação obrigatória**. Sobre **segurança e conformidade**: existe classificação de sigilo por documento? Dados pessoais sensíveis (LGPD) exigem tratamento específico? Podem sair da infra do cliente?",
+    },
+    {
+      role: "user",
+      content:
+        "Classificação existe (público, confidencial, sigiloso). Sigilosos são ~15% da base. LGPD: dados de PF em contratos. NADA pode sair da infra do cliente — exigência do compliance.",
+    },
+    {
+      role: "assistant",
+      content:
+        "Isso trava opções SaaS puras — precisamos rodar em VPC do cliente ou on-prem. Já tem cloud provider padrão? Azure/AWS/GCP? E qual o apetite para GPU on-prem vs. inferência em cloud dedicada?",
+    },
+    {
+      role: "user",
+      content:
+        "Azure é padrão (contrato enterprise). Não têm GPU. Aceitam inferência em Azure OpenAI se ficar em region BR e sob contrato existente.",
+    },
+    {
+      role: "assistant",
+      content:
+        "Ótimo, isso viabiliza Azure OpenAI + AI Search em region brazilsouth. Sobre **volumetria**: 80k PDFs — qual o tamanho médio? Quantos advogados usariam simultaneamente no pico? Novos documentos entram diariamente ou em lotes?",
+    },
+    {
+      role: "user",
+      content:
+        "PDFs variam 2 a 300 páginas, média 40. Uso: 140 advogados, pico estimado 30 concorrentes. Novos: ~200 documentos/dia entram no DMS (Sharepoint).",
+    },
+    {
+      role: "assistant",
+      content:
+        "Sharepoint como fonte simplifica pipeline. Sobre **operação**: quem sustenta hoje as ferramentas jurídicas? Existe SLA formal ou é best-effort? E o time de TI tem experiência com IA?",
+    },
+    {
+      role: "user",
+      content:
+        "Sustentação: 1 pessoa de TI + fornecedor DMS. Zero experiência com IA. Sem SLA formal.",
+    },
+    {
+      role: "assistant",
+      content:
+        "Aí temos um risco relevante — sustentabilidade pós-projeto exige runbook enxuto e treinamento. Antes de gerar o entendimento, preciso entender **riscos** que o comitê levantou. Já surgiu preocupação com alucinação, viés ou vazamento?",
+    },
   ],
   facts: [
-    { key: "metrica", value: "Tempo de pesquisa por caso (2-4h → minutos)", category: CATS.contexto_negocio },
-    { key: "publico", value: "140 advogados; pico 30 concorrentes", category: CATS.contexto_negocio },
-    { key: "cloud_padrao", value: "Azure enterprise (region brazilsouth obrigatório)", category: CATS.ambiente_atual },
+    {
+      key: "metrica",
+      value: "Tempo de pesquisa por caso (2-4h → minutos)",
+      category: CATS.contexto_negocio,
+    },
+    {
+      key: "publico",
+      value: "140 advogados; pico 30 concorrentes",
+      category: CATS.contexto_negocio,
+    },
+    {
+      key: "cloud_padrao",
+      value: "Azure enterprise (region brazilsouth obrigatório)",
+      category: CATS.ambiente_atual,
+    },
     { key: "dms", value: "Sharepoint corporativo", category: CATS.ambiente_atual },
-    { key: "volume_base", value: "80k PDFs, média 40 páginas", category: CATS.volumetria_capacidade },
+    {
+      key: "volume_base",
+      value: "80k PDFs, média 40 páginas",
+      category: CATS.volumetria_capacidade,
+    },
     { key: "ingestao", value: "~200 documentos novos/dia", category: CATS.volumetria_capacidade },
-    { key: "classificacao", value: "Público / Confidencial / Sigiloso (15% sigilosos)", category: CATS.seguranca_conformidade },
-    { key: "compliance", value: "LGPD; dados PF em contratos; nada sai da infra do cliente", category: CATS.seguranca_conformidade },
-    { key: "inferencia", value: "Azure OpenAI region BR aceito", category: CATS.seguranca_conformidade },
-    { key: "sustentacao", value: "1 pessoa TI + fornecedor DMS; sem experiência IA", category: CATS.operacao_sustentacao },
-    { key: "requisito_citacao", value: "Toda resposta com citação rastreável", category: CATS.escopo_tecnico },
-    { key: "governanca_sigilo", value: "Comitê de ética valida antes de expor sigilosos", category: CATS.governanca },
+    {
+      key: "classificacao",
+      value: "Público / Confidencial / Sigiloso (15% sigilosos)",
+      category: CATS.seguranca_conformidade,
+    },
+    {
+      key: "compliance",
+      value: "LGPD; dados PF em contratos; nada sai da infra do cliente",
+      category: CATS.seguranca_conformidade,
+    },
+    {
+      key: "inferencia",
+      value: "Azure OpenAI region BR aceito",
+      category: CATS.seguranca_conformidade,
+    },
+    {
+      key: "sustentacao",
+      value: "1 pessoa TI + fornecedor DMS; sem experiência IA",
+      category: CATS.operacao_sustentacao,
+    },
+    {
+      key: "requisito_citacao",
+      value: "Toda resposta com citação rastreável",
+      category: CATS.escopo_tecnico,
+    },
+    {
+      key: "governanca_sigilo",
+      value: "Comitê de ética valida antes de expor sigilosos",
+      category: CATS.governanca,
+    },
   ],
   understandings: [
     {
@@ -431,25 +655,68 @@ const J3: SeedJourney = {
     "Fintech de crédito consignado (300 funcionários) sofreu tentativa de intrusão via credencial vazada. BC exige plano de segurança. CTO quer implementar Zero Trust em 12 meses.",
   primary_category: CATS.seguranca_conformidade,
   coverage: coverage({
-    contexto_negocio: 0.7, ambiente_atual: 0.4, escopo_tecnico: 0.2,
-    operacao_sustentacao: 0.1, seguranca_conformidade: 0.6, volumetria_capacidade: 0.1,
-    criticidade: 0.5, governanca: 0.4, premissas_exclusoes: 0.1, riscos_validacoes: 0.3,
+    contexto_negocio: 0.7,
+    ambiente_atual: 0.4,
+    escopo_tecnico: 0.2,
+    operacao_sustentacao: 0.1,
+    seguranca_conformidade: 0.6,
+    volumetria_capacidade: 0.1,
+    criticidade: 0.5,
+    governanca: 0.4,
+    premissas_exclusoes: 0.1,
+    riscos_validacoes: 0.3,
   }),
   messages: [
-    { role: "user", content: "Preciso montar proposta de Zero Trust em uma fintech regulada. Sponsor forte, mas nunca fizeram programa desse porte." },
-    { role: "assistant", content: "Boa. Zero Trust é mais programa cultural do que projeto técnico — quero começar pelo **contexto**: o gatilho foi o incidente de credencial ou tem exigência formal do BC/Bacen? Isso muda o senso de urgência e a governança." },
-    { role: "user", content: "Os dois. Tentativa de intrusão em fev, e o Bacen respondeu ao RDR pedindo plano formal em 90 dias. Já foi apresentado plano macro; agora precisamos executar." },
-    { role: "assistant", content: "Prazo regulatório muda tudo — governança precisa ser blindada. Sobre **ambiente atual**: qual IdP hoje (Entra ID, Okta, Google)? Existe MFA em 100% dos acessos ou parcial? Endpoints são gerenciados (MDM)?" },
-    { role: "user", content: "Entra ID. MFA em 60% dos acessos (falta para produção AWS e alguns SaaS de RH). Endpoints: Intune só em 40% da frota — resto é BYOD parcial." },
-    { role: "assistant", content: "Esses gaps já sugerem quick wins críticos: 100% MFA e MDM antes de qualquer segmentação. Sobre **escopo técnico**: o programa inclui rede (segmentação), identidade, endpoints, dados, aplicações — tudo? Ou tem priorização inicial?" },
+    {
+      role: "user",
+      content:
+        "Preciso montar proposta de Zero Trust em uma fintech regulada. Sponsor forte, mas nunca fizeram programa desse porte.",
+    },
+    {
+      role: "assistant",
+      content:
+        "Boa. Zero Trust é mais programa cultural do que projeto técnico — quero começar pelo **contexto**: o gatilho foi o incidente de credencial ou tem exigência formal do BC/Bacen? Isso muda o senso de urgência e a governança.",
+    },
+    {
+      role: "user",
+      content:
+        "Os dois. Tentativa de intrusão em fev, e o Bacen respondeu ao RDR pedindo plano formal em 90 dias. Já foi apresentado plano macro; agora precisamos executar.",
+    },
+    {
+      role: "assistant",
+      content:
+        "Prazo regulatório muda tudo — governança precisa ser blindada. Sobre **ambiente atual**: qual IdP hoje (Entra ID, Okta, Google)? Existe MFA em 100% dos acessos ou parcial? Endpoints são gerenciados (MDM)?",
+    },
+    {
+      role: "user",
+      content:
+        "Entra ID. MFA em 60% dos acessos (falta para produção AWS e alguns SaaS de RH). Endpoints: Intune só em 40% da frota — resto é BYOD parcial.",
+    },
+    {
+      role: "assistant",
+      content:
+        "Esses gaps já sugerem quick wins críticos: 100% MFA e MDM antes de qualquer segmentação. Sobre **escopo técnico**: o programa inclui rede (segmentação), identidade, endpoints, dados, aplicações — tudo? Ou tem priorização inicial?",
+    },
   ],
   facts: [
-    { key: "gatilho", value: "Intrusão + exigência Bacen (plano em 90 dias)", category: CATS.contexto_negocio },
+    {
+      key: "gatilho",
+      value: "Intrusão + exigência Bacen (plano em 90 dias)",
+      category: CATS.contexto_negocio,
+    },
     { key: "sponsor", value: "CTO com respaldo do comitê executivo", category: CATS.governanca },
-    { key: "regulador", value: "Bacen — plano formal pós-RDR", category: CATS.seguranca_conformidade },
+    {
+      key: "regulador",
+      value: "Bacen — plano formal pós-RDR",
+      category: CATS.seguranca_conformidade,
+    },
     { key: "idp", value: "Microsoft Entra ID", category: CATS.ambiente_atual },
     { key: "mfa_cobertura", value: "60% dos acessos", category: CATS.seguranca_conformidade },
-    { key: "mdm_cobertura", value: "40% da frota via Intune (resto BYOD parcial)", category: CATS.ambiente_atual },
+    {
+      key: "mdm_cobertura",
+      value: "40% da frota via Intune (resto BYOD parcial)",
+      category: CATS.ambiente_atual,
+    },
     { key: "prazo", value: "12 meses (marco Bacen em 90 dias)", category: CATS.contexto_negocio },
   ],
   understandings: [],
@@ -466,58 +733,208 @@ const J4: SeedJourney = {
     "Telco top 5 nacional quer substituir DW Teradata (fim de vida) por lakehouse cloud com governança e catálogo. Base de 6PB, 400 usuários analíticos, 90 pipelines críticos. Contrato Teradata expira em 14 meses.",
   primary_category: CATS.contexto_negocio,
   coverage: coverage({
-    contexto_negocio: 1, ambiente_atual: 1, escopo_tecnico: 1,
-    operacao_sustentacao: 1, seguranca_conformidade: 1, volumetria_capacidade: 1,
-    criticidade: 1, governanca: 1, premissas_exclusoes: 1, riscos_validacoes: 1,
+    contexto_negocio: 1,
+    ambiente_atual: 1,
+    escopo_tecnico: 1,
+    operacao_sustentacao: 1,
+    seguranca_conformidade: 1,
+    volumetria_capacidade: 1,
+    criticidade: 1,
+    governanca: 1,
+    premissas_exclusoes: 1,
+    riscos_validacoes: 1,
   }),
   messages: [
-    { role: "user", content: "Programa gigante: sair de Teradata para lakehouse em 14 meses. 6PB, 90 pipelines críticos, 400 analistas. Quero um discovery à altura." },
-    { role: "assistant", content: "Escopo enorme e prazo agressivo. Começo com **contexto**: além do fim de vida do Teradata, existe pressão de custo, de time-to-insight ou de novos casos (IA, real-time)? E quem é o dono do programa — CIO, CDO ou CFO?" },
-    { role: "user", content: "Dono é o CDO (novo cargo, criado ano passado). Drivers: (1) fim de contrato Teradata; (2) custo do DW cresceu 25%/ano; (3) time-to-market de novos indicadores é 45 dias em média; (4) diretoria quer casos de IA/ML monetizáveis (churn, upsell)." },
-    { role: "assistant", content: "CDO como sponsor com casos de IA no radar muda a arquitetura — precisamos suportar batch, streaming e feature store. Sobre **ambiente atual**: além do Teradata, quais ferramentas de ingestão, ETL, orquestração e BI estão em uso hoje? E onde ficam as fontes primárias?" },
-    { role: "user", content: "Ingestão: Informatica PowerCenter (30 pipelines) + Kafka (60 pipelines críticos em tempo real). Orquestração: Control-M. BI: MicroStrategy + Power BI (adoção em crescimento). Fontes: BSS (Oracle), OSS (Cassandra), Salesforce, Adobe Analytics, telemetria de rede (5G — HDFS on-prem)." },
-    { role: "assistant", content: "Base heterogênea, típico de telco. Sobre **volumetria e capacidade**: 6PB é o tamanho atual ou projetado? Qual a taxa de crescimento anual? E qual o pico de queries concorrentes no Teradata hoje?" },
-    { role: "user", content: "6PB hoje, crescendo ~2PB/ano com 5G. Pico Teradata: 3.500 queries concorrentes, top 1% de usuários (analistas de rede) consome 40% dos recursos." },
-    { role: "assistant", content: "Cauda longa clássica — arquitetura precisa suportar workloads mistos. Sobre **operação e sustentação**: qual o SLA atual dos pipelines críticos? Time de plataforma tem quantas pessoas? Runbooks estão documentados?" },
-    { role: "user", content: "SLA pipelines críticos: 99% (medido, entrega 97,5%). Time plataforma: 22 pessoas (dados + eng). Runbooks: parciais, dependência de conhecimento tácito de 3 seniores. Rotatividade preocupa." },
-    { role: "assistant", content: "Risco operacional relevante. Sobre **segurança e conformidade**: LGPD é crítica em telco. Existe DLP, mascaramento de dados sensíveis nos ambientes analíticos? Marco Civil e outros reguladores impõem retenção mínima?" },
-    { role: "user", content: "Anatel exige retenção 5 anos de metadados de chamadas. LGPD: temos DPO, mas mascaramento nos ambientes analíticos é parcial (CPF em claro em algumas visões). Auditoria PWC apontou como gap alto." },
-    { role: "assistant", content: "Gap alto de LGPD precisa entrar no MVP. Sobre **governança**: existe catálogo de dados hoje? Quem aprova acesso? Qualidade de dados tem métricas?" },
-    { role: "user", content: "Catálogo: nada formal, wiki desatualizada. Aprovação de acesso: manual via ticket. Qualidade: sem métricas formais, quase artesanal." },
-    { role: "assistant", content: "Grande alavanca de valor — catálogo + qualidade viram diferenciador competitivo. Sobre **criticidade**: quais pipelines não podem parar 1 hora? E qual é a tolerância a downtime na migração de cada um?" },
-    { role: "user", content: "Não podem parar 1h: billing (fatal), antifraude (perda), cockpit de rede (regulatório). Tolerância: janelas noturnas OK para os demais; para os 3 críticos, migração dupla-escrita obrigatória." },
-    { role: "assistant", content: "Estratégia clara — strangler fig para os críticos. Sobre **riscos**: qual é o maior medo do CDO? E qual é o cenário que faria o programa ser considerado fracasso?" },
-    { role: "user", content: "Medo do CDO: perder credibilidade se falhar no primeiro ano — foi ele quem propôs. Cenário de fracasso: passar dos 14 meses e Teradata precisar de renovação emergencial (custo estimado R$ 12M extra)." },
-    { role: "assistant", content: "Ponto crítico — precisa de milestone irreversível bem cedo. Sobre **premissas e exclusões**: assumimos Databricks/Snowflake ou está aberto? Existe restrição de cloud provider? MicroStrategy vai junto ou é substituído?" },
-    { role: "user", content: "Cloud provider é AWS (contrato enterprise). Databricks está no shortlist junto com Snowflake. MicroStrategy fica no MVP; substituição é fase 2 (fora do escopo agora)." },
-    { role: "assistant", content: "Perfeito. Já tenho base robusta. Vou consolidar entendimento com **complexity: alta** e marcar **human_review_required** pelo tamanho do programa. Gera todos os artefatos (PRD, ADR, spec, user stories) para você levar ao comitê?" },
-    { role: "user", content: "Sim. Gera tudo, com detalhamento máximo para a apresentação de terça." },
+    {
+      role: "user",
+      content:
+        "Programa gigante: sair de Teradata para lakehouse em 14 meses. 6PB, 90 pipelines críticos, 400 analistas. Quero um discovery à altura.",
+    },
+    {
+      role: "assistant",
+      content:
+        "Escopo enorme e prazo agressivo. Começo com **contexto**: além do fim de vida do Teradata, existe pressão de custo, de time-to-insight ou de novos casos (IA, real-time)? E quem é o dono do programa — CIO, CDO ou CFO?",
+    },
+    {
+      role: "user",
+      content:
+        "Dono é o CDO (novo cargo, criado ano passado). Drivers: (1) fim de contrato Teradata; (2) custo do DW cresceu 25%/ano; (3) time-to-market de novos indicadores é 45 dias em média; (4) diretoria quer casos de IA/ML monetizáveis (churn, upsell).",
+    },
+    {
+      role: "assistant",
+      content:
+        "CDO como sponsor com casos de IA no radar muda a arquitetura — precisamos suportar batch, streaming e feature store. Sobre **ambiente atual**: além do Teradata, quais ferramentas de ingestão, ETL, orquestração e BI estão em uso hoje? E onde ficam as fontes primárias?",
+    },
+    {
+      role: "user",
+      content:
+        "Ingestão: Informatica PowerCenter (30 pipelines) + Kafka (60 pipelines críticos em tempo real). Orquestração: Control-M. BI: MicroStrategy + Power BI (adoção em crescimento). Fontes: BSS (Oracle), OSS (Cassandra), Salesforce, Adobe Analytics, telemetria de rede (5G — HDFS on-prem).",
+    },
+    {
+      role: "assistant",
+      content:
+        "Base heterogênea, típico de telco. Sobre **volumetria e capacidade**: 6PB é o tamanho atual ou projetado? Qual a taxa de crescimento anual? E qual o pico de queries concorrentes no Teradata hoje?",
+    },
+    {
+      role: "user",
+      content:
+        "6PB hoje, crescendo ~2PB/ano com 5G. Pico Teradata: 3.500 queries concorrentes, top 1% de usuários (analistas de rede) consome 40% dos recursos.",
+    },
+    {
+      role: "assistant",
+      content:
+        "Cauda longa clássica — arquitetura precisa suportar workloads mistos. Sobre **operação e sustentação**: qual o SLA atual dos pipelines críticos? Time de plataforma tem quantas pessoas? Runbooks estão documentados?",
+    },
+    {
+      role: "user",
+      content:
+        "SLA pipelines críticos: 99% (medido, entrega 97,5%). Time plataforma: 22 pessoas (dados + eng). Runbooks: parciais, dependência de conhecimento tácito de 3 seniores. Rotatividade preocupa.",
+    },
+    {
+      role: "assistant",
+      content:
+        "Risco operacional relevante. Sobre **segurança e conformidade**: LGPD é crítica em telco. Existe DLP, mascaramento de dados sensíveis nos ambientes analíticos? Marco Civil e outros reguladores impõem retenção mínima?",
+    },
+    {
+      role: "user",
+      content:
+        "Anatel exige retenção 5 anos de metadados de chamadas. LGPD: temos DPO, mas mascaramento nos ambientes analíticos é parcial (CPF em claro em algumas visões). Auditoria PWC apontou como gap alto.",
+    },
+    {
+      role: "assistant",
+      content:
+        "Gap alto de LGPD precisa entrar no MVP. Sobre **governança**: existe catálogo de dados hoje? Quem aprova acesso? Qualidade de dados tem métricas?",
+    },
+    {
+      role: "user",
+      content:
+        "Catálogo: nada formal, wiki desatualizada. Aprovação de acesso: manual via ticket. Qualidade: sem métricas formais, quase artesanal.",
+    },
+    {
+      role: "assistant",
+      content:
+        "Grande alavanca de valor — catálogo + qualidade viram diferenciador competitivo. Sobre **criticidade**: quais pipelines não podem parar 1 hora? E qual é a tolerância a downtime na migração de cada um?",
+    },
+    {
+      role: "user",
+      content:
+        "Não podem parar 1h: billing (fatal), antifraude (perda), cockpit de rede (regulatório). Tolerância: janelas noturnas OK para os demais; para os 3 críticos, migração dupla-escrita obrigatória.",
+    },
+    {
+      role: "assistant",
+      content:
+        "Estratégia clara — strangler fig para os críticos. Sobre **riscos**: qual é o maior medo do CDO? E qual é o cenário que faria o programa ser considerado fracasso?",
+    },
+    {
+      role: "user",
+      content:
+        "Medo do CDO: perder credibilidade se falhar no primeiro ano — foi ele quem propôs. Cenário de fracasso: passar dos 14 meses e Teradata precisar de renovação emergencial (custo estimado R$ 12M extra).",
+    },
+    {
+      role: "assistant",
+      content:
+        "Ponto crítico — precisa de milestone irreversível bem cedo. Sobre **premissas e exclusões**: assumimos Databricks/Snowflake ou está aberto? Existe restrição de cloud provider? MicroStrategy vai junto ou é substituído?",
+    },
+    {
+      role: "user",
+      content:
+        "Cloud provider é AWS (contrato enterprise). Databricks está no shortlist junto com Snowflake. MicroStrategy fica no MVP; substituição é fase 2 (fora do escopo agora).",
+    },
+    {
+      role: "assistant",
+      content:
+        "Perfeito. Já tenho base robusta. Vou consolidar entendimento com **complexity: alta** e marcar **human_review_required** pelo tamanho do programa. Gera todos os artefatos (PRD, ADR, spec, user stories) para você levar ao comitê?",
+    },
+    {
+      role: "user",
+      content: "Sim. Gera tudo, com detalhamento máximo para a apresentação de terça.",
+    },
   ],
   facts: [
-    { key: "sponsor", value: "CDO (cargo novo, credibilidade em risco)", category: CATS.governanca },
+    {
+      key: "sponsor",
+      value: "CDO (cargo novo, credibilidade em risco)",
+      category: CATS.governanca,
+    },
     { key: "prazo", value: "14 meses até vencimento Teradata", category: CATS.contexto_negocio },
-    { key: "drivers", value: "Custo (+25%/ano), TTM 45d, casos IA/ML", category: CATS.contexto_negocio },
-    { key: "custo_extra_falha", value: "R$ 12M em renovação emergencial se falhar prazo", category: CATS.riscos_validacoes },
+    {
+      key: "drivers",
+      value: "Custo (+25%/ano), TTM 45d, casos IA/ML",
+      category: CATS.contexto_negocio,
+    },
+    {
+      key: "custo_extra_falha",
+      value: "R$ 12M em renovação emergencial se falhar prazo",
+      category: CATS.riscos_validacoes,
+    },
     { key: "dw_atual", value: "Teradata (fim de vida)", category: CATS.ambiente_atual },
-    { key: "ingestao", value: "Informatica (30) + Kafka (60 críticos)", category: CATS.ambiente_atual },
+    {
+      key: "ingestao",
+      value: "Informatica (30) + Kafka (60 críticos)",
+      category: CATS.ambiente_atual,
+    },
     { key: "orquestracao", value: "Control-M", category: CATS.ambiente_atual },
     { key: "bi", value: "MicroStrategy + Power BI (crescendo)", category: CATS.ambiente_atual },
-    { key: "fontes", value: "BSS (Oracle), OSS (Cassandra), Salesforce, Adobe, HDFS (5G)", category: CATS.ambiente_atual },
+    {
+      key: "fontes",
+      value: "BSS (Oracle), OSS (Cassandra), Salesforce, Adobe, HDFS (5G)",
+      category: CATS.ambiente_atual,
+    },
     { key: "volume", value: "6PB hoje, +2PB/ano", category: CATS.volumetria_capacidade },
-    { key: "concorrencia_pico", value: "3.500 queries; top 1% consome 40%", category: CATS.volumetria_capacidade },
+    {
+      key: "concorrencia_pico",
+      value: "3.500 queries; top 1% consome 40%",
+      category: CATS.volumetria_capacidade,
+    },
     { key: "sla_pipelines", value: "99% (entrega 97,5%)", category: CATS.operacao_sustentacao },
-    { key: "time_plataforma", value: "22 pessoas; risco de rotatividade em 3 seniores", category: CATS.operacao_sustentacao },
-    { key: "runbooks", value: "Parciais; conhecimento tácito", category: CATS.operacao_sustentacao },
-    { key: "retencao_anatel", value: "5 anos de metadados de chamadas", category: CATS.seguranca_conformidade },
-    { key: "gap_lgpd", value: "Mascaramento parcial; CPF em claro (auditoria PWC apontou)", category: CATS.seguranca_conformidade },
-    { key: "catalogo", value: "Inexistente formal (wiki desatualizada)", category: CATS.governanca },
+    {
+      key: "time_plataforma",
+      value: "22 pessoas; risco de rotatividade em 3 seniores",
+      category: CATS.operacao_sustentacao,
+    },
+    {
+      key: "runbooks",
+      value: "Parciais; conhecimento tácito",
+      category: CATS.operacao_sustentacao,
+    },
+    {
+      key: "retencao_anatel",
+      value: "5 anos de metadados de chamadas",
+      category: CATS.seguranca_conformidade,
+    },
+    {
+      key: "gap_lgpd",
+      value: "Mascaramento parcial; CPF em claro (auditoria PWC apontou)",
+      category: CATS.seguranca_conformidade,
+    },
+    {
+      key: "catalogo",
+      value: "Inexistente formal (wiki desatualizada)",
+      category: CATS.governanca,
+    },
     { key: "qualidade_dados", value: "Sem métricas; artesanal", category: CATS.governanca },
     { key: "aprovacao_acesso", value: "Manual via ticket", category: CATS.governanca },
-    { key: "criticos_1h", value: "Billing, antifraude, cockpit de rede", category: CATS.criticidade },
-    { key: "estrategia_criticos", value: "Dupla escrita (strangler fig)", category: CATS.escopo_tecnico },
+    {
+      key: "criticos_1h",
+      value: "Billing, antifraude, cockpit de rede",
+      category: CATS.criticidade,
+    },
+    {
+      key: "estrategia_criticos",
+      value: "Dupla escrita (strangler fig)",
+      category: CATS.escopo_tecnico,
+    },
     { key: "cloud", value: "AWS enterprise", category: CATS.premissas_exclusoes },
-    { key: "plataforma_shortlist", value: "Databricks vs Snowflake", category: CATS.escopo_tecnico },
-    { key: "microstrategy_mvp", value: "Mantido no MVP; substituição fase 2 (fora do escopo)", category: CATS.premissas_exclusoes },
+    {
+      key: "plataforma_shortlist",
+      value: "Databricks vs Snowflake",
+      category: CATS.escopo_tecnico,
+    },
+    {
+      key: "microstrategy_mvp",
+      value: "Mantido no MVP; substituição fase 2 (fora do escopo)",
+      category: CATS.premissas_exclusoes,
+    },
     { key: "casos_ia_meta", value: "Churn e upsell no ano 1", category: CATS.contexto_negocio },
     { key: "auditoria_pwc", value: "Apontou gap LGPD alto", category: CATS.seguranca_conformidade },
   ],

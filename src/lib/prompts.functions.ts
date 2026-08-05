@@ -23,7 +23,12 @@ export const getActivePrompt = createServerFn({ method: "GET" })
       if (pErr) throw new Error(pErr.message);
       const { data: v, error: vErr } = await supabase
         .from("prompt_versions")
-        .insert({ prompt_id: created.id, user_id: userId, version_number: 1, content: DEFAULT_SYSTEM_PROMPT })
+        .insert({
+          prompt_id: created.id,
+          user_id: userId,
+          version_number: 1,
+          content: DEFAULT_SYSTEM_PROMPT,
+        })
         .select()
         .single();
       if (vErr) throw new Error(vErr.message);
@@ -63,7 +68,12 @@ export const savePromptVersion = createServerFn({ method: "POST" })
 
     const { data: v, error } = await supabase
       .from("prompt_versions")
-      .insert({ prompt_id: prompt.id, user_id: userId, version_number: nextV, content: data.content })
+      .insert({
+        prompt_id: prompt.id,
+        user_id: userId,
+        version_number: nextV,
+        content: data.content,
+      })
       .select()
       .single();
     if (error) throw new Error(error.message);

@@ -14,7 +14,12 @@ type Props = {
  * Botão discreto para anexar arquivos .txt / .md em campos de texto longo.
  * Lê o conteúdo no cliente e devolve como string via onText.
  */
-export function AttachTextFile({ onText, label = "Anexar .txt / .md", className, maxBytes = 512_000 }: Props) {
+export function AttachTextFile({
+  onText,
+  label = "Anexar .txt / .md",
+  className,
+  maxBytes = 512_000,
+}: Props) {
   const ref = useRef<HTMLInputElement>(null);
 
   return (

@@ -5,10 +5,14 @@ import { supabaseForUser, requireAuth, errorResult, jsonResult } from "../supaba
 export default defineTool({
   name: "create_discovery",
   title: "Criar discovery",
-  description: "Cria um novo discovery (conversa) para o usuário autenticado. Retorna o ID para uso em outras tools.",
+  description:
+    "Cria um novo discovery (conversa) para o usuário autenticado. Retorna o ID para uso em outras tools.",
   inputSchema: {
     title: z.string().min(1).describe("Título curto do discovery."),
-    service_type: z.string().min(1).describe("Serviço do portfólio que será descoberto (ex.: 'Chatbot com RAG')."),
+    service_type: z
+      .string()
+      .min(1)
+      .describe("Serviço do portfólio que será descoberto (ex.: 'Chatbot com RAG')."),
     briefing: z.string().min(1).describe("Briefing inicial do cliente."),
   },
   annotations: { readOnlyHint: false, destructiveHint: false, openWorldHint: false },
@@ -21,7 +25,8 @@ export default defineTool({
     const { data: conv, error } = await supabase
       .from("conversations")
       .insert({ ...input, user_id: userId })
-      .select().single();
+      .select()
+      .single();
     if (error) return errorResult(error.message);
     await supabase.from("discovery_states").insert({ conversation_id: conv.id, user_id: userId });
     return jsonResult({ id: conv.id, conversation: conv });

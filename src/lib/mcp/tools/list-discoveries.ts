@@ -7,7 +7,13 @@ export default defineTool({
   title: "Listar discoveries",
   description: "Lista os discoveries (conversas de pré-vendas) do usuário autenticado no Gym.AI.",
   inputSchema: {
-    limit: z.number().int().min(1).max(50).optional().describe("Máximo de discoveries a retornar (padrão 20)."),
+    limit: z
+      .number()
+      .int()
+      .min(1)
+      .max(50)
+      .optional()
+      .describe("Máximo de discoveries a retornar (padrão 20)."),
   },
   annotations: { readOnlyHint: true, idempotentHint: true, openWorldHint: false },
   handler: async ({ limit }, ctx) => {

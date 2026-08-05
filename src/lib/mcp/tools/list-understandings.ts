@@ -5,7 +5,8 @@ import { supabaseForUser, requireAuth, errorResult, jsonResult } from "../supaba
 export default defineTool({
   name: "list_understandings",
   title: "Listar Entendimentos Executivos",
-  description: "Retorna as versões do Entendimento Executivo geradas para um discovery (sumário, riscos, próximos passos).",
+  description:
+    "Retorna as versões do Entendimento Executivo geradas para um discovery (sumário, riscos, próximos passos).",
   inputSchema: {
     conversation_id: z.string().uuid().describe("ID do discovery."),
   },

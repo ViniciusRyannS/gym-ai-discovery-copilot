@@ -5,7 +5,8 @@ import { supabaseForUser, requireAuth, errorResult, jsonResult } from "../supaba
 export default defineTool({
   name: "list_artifacts",
   title: "Listar artefatos",
-  description: "Retorna os artefatos gerados (PRD, ADR, Spec, User Stories) em Markdown para um discovery.",
+  description:
+    "Retorna os artefatos gerados (PRD, ADR, Spec, User Stories) em Markdown para um discovery.",
   inputSchema: {
     conversation_id: z.string().uuid().describe("ID do discovery."),
   },

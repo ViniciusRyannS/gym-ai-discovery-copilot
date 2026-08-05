@@ -1,4 +1,10 @@
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription } from "@/components/ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetDescription,
+} from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
@@ -46,7 +52,9 @@ export function UnderstandingDrawer({ open, onOpenChange, conversationId }: Prop
       <SheetContent side="right" className="w-full sm:max-w-xl overflow-y-auto">
         <SheetHeader className="border-b border-hairline pb-4">
           <SheetTitle className="font-display text-2xl">Entendimento Executivo</SheetTitle>
-          <SheetDescription>Síntese acionável do discovery. Sempre revisada por um profissional antes do cliente.</SheetDescription>
+          <SheetDescription>
+            Síntese acionável do discovery. Sempre revisada por um profissional antes do cliente.
+          </SheetDescription>
         </SheetHeader>
 
         <div className="flex items-center justify-between pt-4">
@@ -55,7 +63,11 @@ export function UnderstandingDrawer({ open, onOpenChange, conversationId }: Prop
             Requer revisão humana
           </div>
           <Button size="sm" onClick={() => genMut.mutate()} disabled={genMut.isPending}>
-            {genMut.isPending ? <RefreshCw className="mr-1.5 h-3.5 w-3.5 animate-spin" /> : <Sparkles className="mr-1.5 h-3.5 w-3.5" />}
+            {genMut.isPending ? (
+              <RefreshCw className="mr-1.5 h-3.5 w-3.5 animate-spin" />
+            ) : (
+              <Sparkles className="mr-1.5 h-3.5 w-3.5" />
+            )}
             {rows.length ? "Regerar" : "Gerar"}
           </Button>
         </div>
@@ -70,7 +82,9 @@ export function UnderstandingDrawer({ open, onOpenChange, conversationId }: Prop
         {latest && (
           <div className="mt-6 space-y-6">
             <div className="flex items-center gap-2">
-              <Badge variant="outline" className="font-mono-tabular">v{latest.version}</Badge>
+              <Badge variant="outline" className="font-mono-tabular">
+                v{latest.version}
+              </Badge>
               <Badge variant="outline" className={COMPLEXITY_COLOR[latest.complexity] ?? ""}>
                 Complexidade: {latest.complexity}
               </Badge>
@@ -98,7 +112,9 @@ export function UnderstandingDrawer({ open, onOpenChange, conversationId }: Prop
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div>
-      <div className="mb-1.5 font-mono-tabular text-[10px] uppercase tracking-widest text-primary">{title}</div>
+      <div className="mb-1.5 font-mono-tabular text-[10px] uppercase tracking-widest text-primary">
+        {title}
+      </div>
       <p className="text-sm leading-relaxed text-foreground/90">{children}</p>
     </div>
   );
@@ -108,7 +124,9 @@ function BulletSection({ title, items }: { title: string; items: string[] }) {
   if (!items.length) return null;
   return (
     <div>
-      <div className="mb-1.5 font-mono-tabular text-[10px] uppercase tracking-widest text-primary">{title}</div>
+      <div className="mb-1.5 font-mono-tabular text-[10px] uppercase tracking-widest text-primary">
+        {title}
+      </div>
       <ul className="space-y-1 text-sm text-foreground/90">
         {items.map((it, i) => (
           <li key={i} className="flex gap-2">

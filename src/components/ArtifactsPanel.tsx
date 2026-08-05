@@ -1,4 +1,10 @@
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription } from "@/components/ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetDescription,
+} from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -23,11 +29,13 @@ const KINDS = [
   { id: "user_story", label: "User Stories", desc: "5-8 histórias com critérios" },
 ] as const;
 
+type ArtifactKind = (typeof KINDS)[number]["id"];
+
 export function ArtifactsPanel({ open, onOpenChange, conversationId }: Props) {
   const list = useServerFn(listArtifacts);
   const gen = useServerFn(generateArtifacts);
   const qc = useQueryClient();
-  const [selected, setSelected] = useState<string[]>(["prd"]);
+  const [selected, setSelected] = useState<ArtifactKind[]>(["prd"]);
   const [expanded, setExpanded] = useState<string | null>(null);
 
   const { data: artifacts = [] } = useQuery({
@@ -37,7 +45,7 @@ export function ArtifactsPanel({ open, onOpenChange, conversationId }: Props) {
   });
 
   const genMut = useMutation({
-    mutationFn: () => gen({ data: { conversation_id: conversationId, kinds: selected as any } }),
+    mutationFn: () => gen({ data: { conversation_id: conversationId, kinds: selected } }),
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["artifacts", conversationId] });
       toast.success("Artefatos gerados");
@@ -45,7 +53,7 @@ export function ArtifactsPanel({ open, onOpenChange, conversationId }: Props) {
     onError: (e: Error) => toast.error(e.message),
   });
 
-  function toggle(k: string) {
+  function toggle(k: ArtifactKind) {
     setSelected((s) => (s.includes(k) ? s.filter((x) => x !== k) : [...s, k]));
   }
 
@@ -64,7 +72,9 @@ export function ArtifactsPanel({ open, onOpenChange, conversationId }: Props) {
       <SheetContent side="right" className="w-full sm:max-w-2xl overflow-y-auto">
         <SheetHeader className="border-b border-hairline pb-4">
           <SheetTitle className="font-display text-2xl">Artefatos</SheetTitle>
-          <SheetDescription>Gere PRD, ADR, Spec ou User Stories a partir do discovery em curso.</SheetDescription>
+          <SheetDescription>
+            Gere PRD, ADR, Spec ou User Stories a partir do discovery em curso.
+          </SheetDescription>
         </SheetHeader>
 
         <div className="mt-4 space-y-4">
@@ -73,10 +83,16 @@ export function ArtifactsPanel({ open, onOpenChange, conversationId }: Props) {
               <label
                 key={k.id}
                 className={`flex cursor-pointer items-start gap-2 rounded-xl border p-3 text-sm transition ${
-                  selected.includes(k.id) ? "border-primary/50 bg-primary/5" : "border-hairline hover:border-primary/30"
+                  selected.includes(k.id)
+                    ? "border-primary/50 bg-primary/5"
+                    : "border-hairline hover:border-primary/30"
                 }`}
               >
-                <Checkbox checked={selected.includes(k.id)} onCheckedChange={() => toggle(k.id)} className="mt-0.5" />
+                <Checkbox
+                  checked={selected.includes(k.id)}
+                  onCheckedChange={() => toggle(k.id)}
+                  className="mt-0.5"
+                />
                 <div className="min-w-0">
                   <div className="font-medium">{k.label}</div>
                   <div className="text-xs text-muted-foreground">{k.desc}</div>
@@ -85,9 +101,15 @@ export function ArtifactsPanel({ open, onOpenChange, conversationId }: Props) {
             ))}
           </div>
 
-          <Button disabled={!selected.length || genMut.isPending} onClick={() => genMut.mutate()} className="w-full">
+          <Button
+            disabled={!selected.length || genMut.isPending}
+            onClick={() => genMut.mutate()}
+            className="w-full"
+          >
             <Sparkles className="mr-1.5 h-3.5 w-3.5" />
-            {genMut.isPending ? "Gerando…" : `Gerar ${selected.length} artefato${selected.length > 1 ? "s" : ""}`}
+            {genMut.isPending
+              ? "Gerando…"
+              : `Gerar ${selected.length} artefato${selected.length > 1 ? "s" : ""}`}
           </Button>
         </div>
 
@@ -105,13 +127,22 @@ export function ArtifactsPanel({ open, onOpenChange, conversationId }: Props) {
                   <div className="min-w-0">
                     <div className="truncate text-sm font-medium">{a.title}</div>
                     <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
-                      <Badge variant="outline" className="font-mono-tabular text-[10px]">{a.kind}</Badge>
+                      <Badge variant="outline" className="font-mono-tabular text-[10px]">
+                        {a.kind}
+                      </Badge>
                       <span>{new Date(a.created_at).toLocaleString()}</span>
                     </div>
                   </div>
                 </div>
                 <div className="flex shrink-0 items-center gap-1">
-                  <Button size="icon" variant="ghost" onClick={() => { navigator.clipboard.writeText(a.content); toast.success("Copiado"); }}>
+                  <Button
+                    size="icon"
+                    variant="ghost"
+                    onClick={() => {
+                      navigator.clipboard.writeText(a.content);
+                      toast.success("Copiado");
+                    }}
+                  >
                     <Copy className="h-3.5 w-3.5" />
                   </Button>
                   <Button size="icon" variant="ghost" onClick={() => download(a)}>

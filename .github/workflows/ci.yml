@@ -15,7 +15,7 @@ concurrency:
 
 jobs:
   quality-gate:
-    name: Install, typecheck, test and build
+    name: Install, lint, typecheck, test and build
     runs-on: ubuntu-latest
     timeout-minutes: 15
 
@@ -31,6 +31,9 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Lint
+        run: npm run lint
 
       - name: Typecheck
         run: npm run typecheck

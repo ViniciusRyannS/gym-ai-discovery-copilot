@@ -23,7 +23,7 @@ concluído com evidência real; limitações externas devem permanecer explícit
 - [x] Validar instalação.
 - [x] Adicionar script de typecheck.
 - [x] Validar build de produção.
-- [ ] Corrigir o lint global ou definir baseline explícito.
+- [x] Corrigir o lint global ou definir baseline explícito.
 - [x] Atualizar o nome genérico do pacote.
 - [x] Adicionar CI para typecheck, testes e build.
 
@@ -90,7 +90,7 @@ concluído com evidência real; limitações externas devem permanecer explícit
 ## Quality gate final
 
 - [x] install
-- [ ] lint global ou baseline aprovado
+- [x] lint global ou baseline aprovado
 - [x] typecheck
 - [x] testes unitários
 - [x] build

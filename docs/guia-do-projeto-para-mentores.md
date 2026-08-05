@@ -219,7 +219,6 @@ produção. Ainda faltam, entre outros pontos:
 - testes de segurança entre usuários;
 - maior resistência a falhas de serviços externos;
 - testes automatizados da jornada inteira no navegador;
-- integração contínua no GitHub;
 - recursos como colaboração, CRM e exportação para PDF/DOCX;
 - materiais visuais finais, como GIF e vídeo de apresentação.
 

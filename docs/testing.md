@@ -173,6 +173,21 @@ Evidência pública: [execução 30948719261](https://github.com/ViniciusRyannS/
 O lint global não foi incluído artificialmente no gate: sua dívida permanece
 registrada e será tratada em escopo próprio.
 
+## Execução de 2026-08-04 — PORT-008
+
+```text
+npm run lint: passou, 0 erros e 0 avisos
+npm run typecheck: passou
+npm test: 25 testes passaram, 0 falharam
+npm run build: passou
+```
+
+A auditoria removeu componentes sem referência e dependências associadas. O
+`npm audit fix`, sem `--force`, corrigiu as vulnerabilidades compatíveis. Quatro
+alertas transitivos permaneceram: um deles sem correção disponível na cadeia do
+MCP e os demais dependentes de atualização do toolchain. Eles não foram
+ocultados nem corrigidos por atualização principal forçada.
+
 ## Execução de 2026-07-31 — DEMO-004
 
 ```text

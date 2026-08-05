@@ -4,7 +4,8 @@ import { supabaseForUser, requireAuth, errorResult, jsonResult } from "../supaba
 export default defineTool({
   name: "list_portfolio",
   title: "Portfólio de serviços",
-  description: "Lista os serviços ativos do portfólio do usuário (usados como referência pelos discoveries).",
+  description:
+    "Lista os serviços ativos do portfólio do usuário (usados como referência pelos discoveries).",
   inputSchema: {},
   annotations: { readOnlyHint: true, idempotentHint: true, openWorldHint: false },
   handler: async (_input, ctx) => {

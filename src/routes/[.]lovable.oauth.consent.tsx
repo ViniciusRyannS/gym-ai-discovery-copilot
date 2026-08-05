@@ -93,20 +93,31 @@ function Consent() {
               Conectar <em className="text-primary not-italic">{clientName}</em> à sua conta Gym.AI
             </h1>
             <p className="mt-2 text-sm text-muted-foreground">
-              {clientName} poderá chamar as tools do Gym.AI enquanto você estiver conectado.
-              As permissões e políticas do sistema (RLS) continuam valendo — o cliente age como você.
+              {clientName} poderá chamar as tools do Gym.AI enquanto você estiver conectado. As
+              permissões e políticas do sistema (RLS) continuam valendo — o cliente age como você.
             </p>
           </div>
 
           <ul className="space-y-2 text-sm text-foreground/90">
-            <li className="flex gap-2"><span className="text-primary">•</span> Listar e criar seus discoveries</li>
-            <li className="flex gap-2"><span className="text-primary">•</span> Enviar mensagens no chat como você</li>
-            <li className="flex gap-2"><span className="text-primary">•</span> Gerar Entendimento Executivo e artefatos</li>
-            <li className="flex gap-2"><span className="text-primary">•</span> Ler seu portfólio e prompt ativo</li>
+            <li className="flex gap-2">
+              <span className="text-primary">•</span> Listar e criar seus discoveries
+            </li>
+            <li className="flex gap-2">
+              <span className="text-primary">•</span> Enviar mensagens no chat como você
+            </li>
+            <li className="flex gap-2">
+              <span className="text-primary">•</span> Gerar Entendimento Executivo e artefatos
+            </li>
+            <li className="flex gap-2">
+              <span className="text-primary">•</span> Ler seu portfólio e prompt ativo
+            </li>
           </ul>
 
           {error && (
-            <p role="alert" className="rounded-md border border-destructive/40 bg-destructive/10 p-3 text-xs text-destructive">
+            <p
+              role="alert"
+              className="rounded-md border border-destructive/40 bg-destructive/10 p-3 text-xs text-destructive"
+            >
               {error}
             </p>
           )}
@@ -115,7 +126,12 @@ function Consent() {
             <Button className="flex-1" disabled={busy} onClick={() => decide(true)}>
               {busy ? "Autorizando…" : "Autorizar"}
             </Button>
-            <Button variant="outline" className="flex-1" disabled={busy} onClick={() => decide(false)}>
+            <Button
+              variant="outline"
+              className="flex-1"
+              disabled={busy}
+              onClick={() => decide(false)}
+            >
               Cancelar
             </Button>
           </div>
