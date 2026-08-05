@@ -17,7 +17,7 @@ portfólio.
 
 ## Status
 
-Validação local concluída; publicação e smoke test pendentes.
+Concluída em 2026-08-05.
 
 ## Alterações
 
@@ -44,3 +44,11 @@ npm run build: passou
 O audit de dependências caiu de sete alertas para quatro alertas transitivos
 (um baixo e três moderados). Um alerta na cadeia do MCP não possui correção
 compatível disponível; nenhuma atualização principal foi forçada.
+
+## Evidências publicadas
+
+- commit principal: `87a5b21` (`chore: finalize repository audit`);
+- [GitHub Actions 30967684358](https://github.com/ViniciusRyannS/gym-ai-discovery-copilot/actions/runs/30967684358): `success`;
+- `GET /demo`: HTTP 200;
+- refresh de `/demo`: HTTP 200;
+- título, identificação de dados simulados e revisão humana presentes.

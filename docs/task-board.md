@@ -37,3 +37,4 @@ Nenhuma tarefa iniciada. A próxima ação deve ser escolhida sem misturar escop
 | DOC-005   | Alinhar narrativa técnica atual              | UI, docs, deploy e smoke test aprovados   |
 | QA-003    | Adicionar GitHub Actions CI                  | Workflow verde no GitHub Actions          |
 | QA-004    | Resolver baseline global de lint             | 0 erros e 0 avisos                        |
+| PORT-008  | Auditar e finalizar o repositório            | CI verde e smoke público aprovado         |

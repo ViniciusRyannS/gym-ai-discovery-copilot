@@ -220,3 +220,12 @@ asset público contém “Abrir conversa exemplo”: sim
 asset público contém o cenário de retrabalho: sim
 asset público contém aviso sem envio externo: sim
 ```
+
+## Validação publicada de 2026-08-05 — PORT-008
+
+```text
+GitHub Actions 30967684358: success
+GET /demo: HTTP 200
+refresh /demo: HTTP 200
+dados simulados e revisão humana: presentes
+```

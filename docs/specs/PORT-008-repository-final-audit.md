@@ -39,7 +39,7 @@ remoto de IA, a demonstração publicada ou o histórico Git.
 - [x] segredos e artefatos locais continuam fora do Git;
 - [x] lint possui resultado honesto e reproduzível;
 - [x] typecheck, testes e build passam;
-- [ ] CI e demonstração pública permanecem verdes.
+- [x] CI e demonstração pública permanecem verdes.
 
 ## Rollback
 
