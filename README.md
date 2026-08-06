@@ -139,8 +139,7 @@ npm test
 npm run build
 ```
 
-O lint global passa sem erros e mantém apenas dois avisos não bloqueantes de
-Fast Refresh em componentes compartilhados de UI.
+O lint global passa sem erros e sem avisos.
 
 ## Variáveis de ambiente
 

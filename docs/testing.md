@@ -229,3 +229,30 @@ GET /demo: HTTP 200
 refresh /demo: HTTP 200
 dados simulados e revisão humana: presentes
 ```
+
+## Execução final de 2026-08-06 — revisão documental
+
+```text
+npm ci: passou
+npm run lint: passou, 0 erros e 0 avisos
+npm run typecheck: passou
+npm test: 25 testes passaram, 0 falharam
+npm run build: passou
+```
+
+O `npm ci` informou cinco alertas transitivos no audit (um baixo, três
+moderados e um alto). O build permaneceu verde, com avisos não bloqueantes do
+toolchain sobre APIs depreciadas do TanStack Start, resolução de paths e tamanho
+de chunk. Nenhum deles foi tratado nesta revisão exclusivamente documental.
+
+Roteiro final da demonstração:
+
+```text
+GET /demo: HTTP 200
+refresh /demo: HTTP 200
+Briefing, Perguntas, Cobertura, Entendimento e Artefatos: presentes
+dados simulados e revisão humana: presentes
+```
+
+As quatro capturas publicadas no README registram visualmente a jornada. O
+ambiente conectado não foi revalidado nem teve suas limitações alteradas.

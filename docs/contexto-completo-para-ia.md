@@ -227,7 +227,7 @@ docs/sessions/                 evidências e registros de execução
 
 ## 10. Estado validado
 
-Até 4 de agosto de 2026, existe evidência registrada de:
+Até 6 de agosto de 2026, existe evidência registrada de:
 
 - instalação reproduzível com npm;
 - typecheck aprovado;
@@ -235,6 +235,8 @@ Até 4 de agosto de 2026, existe evidência registrada de:
 - build de produção aprovado;
 - lint global aprovado sem erros ou avisos;
 - CI pública aprovada no GitHub Actions;
+- package name corrigido para `gym-ai-discovery-copilot`;
+- quatro screenshots reais publicados no README;
 - rota pública HTTPS com deep link e refresh;
 - teste da demo em desktop e mobile;
 - ausência de chamadas ao Supabase e gateway no fluxo `/demo`;
@@ -255,7 +257,7 @@ somente como roadmap, não como funcionalidade concluída.
 ## 11. Limitações e riscos conhecidos
 
 - não há suíte E2E permanente no repositório;
-- faltam screenshots, GIF e release formal de portfólio;
+- faltam vídeo/GIF opcional e release formal de portfólio;
 - o ambiente conectado precisa de validação real de login e IA;
 - fallback e atomicidade do gateway remoto estão pendentes;
 - RLS e constraints precisam ser fortalecidos e testados entre usuários;
@@ -265,11 +267,12 @@ somente como roadmap, não como funcionalidade concluída.
 
 ## 12. Próximas prioridades recomendadas
 
-1. adicionar screenshots e vídeo/GIF ao repositório;
-2. criar uma suíte E2E permanente;
-3. revisar metadados sociais e GitHub About;
-4. criar a release `v0.1.0-portfolio`;
-5. somente depois avançar na resiliência da IA e segurança conectada.
+1. preparar o texto final e publicar o projeto no LinkedIn;
+2. revisar metadados sociais e GitHub About;
+3. criar a release `v0.1.0-portfolio`;
+4. adicionar vídeo/GIF curto, se desejado;
+5. criar uma suíte E2E permanente;
+6. somente depois avançar na resiliência da IA e segurança conectada.
 
 ## 13. Links
 

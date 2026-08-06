@@ -81,12 +81,17 @@ concluído com evidência real; limitações externas devem permanecer explícit
 - [ ] Validar MCP ponta a ponta com OAuth.
 - [ ] Validar Entendimento Executivo versionado no ambiente conectado.
 - [ ] Validar geração dos quatro artefatos.
-- [ ] Executar roteiro completo de demonstração.
+- [x] Executar roteiro completo de demonstração.
 - [ ] Criar release candidata com tag.
-- [ ] Tornar o repositório público somente após a revisão de segredos, autoria e
+- [x] Tornar o repositório público após a revisão de segredos, autoria e
       documentação.
 - [x] Validar acesso direto e refresh da rota pública `/demo`.
 - [x] Validar ausência de chamadas ao Supabase e ao gateway na demo pública.
+
+Roteiro final executado em 2026-08-06 com evidência visual das etapas de
+briefing, perguntas, cobertura, entendimento e artefatos. A rota e o refresh
+retornaram HTTP 200; os avisos de dados simulados e revisão humana estavam
+presentes.
 
 ## Quality gate final
 
